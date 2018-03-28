@@ -1,0 +1,43 @@
+<div id="pagetitle">
+  <h1>{{pagetitle}}</h1>
+</div>
+
+<a routerLink="/users/create" class="btn btn-primary">Create User</a>
+
+<div id="content">
+  <br>
+<table class="table table-sm text-center table-striped table-hover">
+  <thead class="thead-dark">
+    <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Username</th>
+    <th scope="col">Name</th>
+    <th scope="col">Phone</th>
+    <th scope="col">Email</th>
+    <th scope="col">Modify</th>
+    <th scope="col">Active</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let user of users">
+    <td scope="row" >{{user.Id}}</td>
+    <td scope="row">{{user.Username}}</td>
+    <td>{{user.Firstname}} {{user.Lastname}}</td>
+    <td>{{user.Phone}}</td>
+    <td>{{user.Email}}</td>
+    <td>{{user.Active ? "Yes" : "No" }}</td>
+    <td>
+      <a routerLink="/users/detail/{{user.Id}}" class="btn">Detail</a> |
+      <a routerLink="/users/edit/{{user.Id}}" class="btn">Edit</a>  
+    </td>
+
+    <!--<td>{{user.IsReviewer}}</td>
+    <td>{{user.IsAdmin}}</td>
+    <td>{{user.Active}}</td>-->
+  </tr>
+</tbody>
+
+</table>
+
+</div>

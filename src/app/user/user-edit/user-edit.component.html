@@ -1,0 +1,93 @@
+<div id="pagetitle">
+    <h1>{{pagetitle}}</h1>
+</div>
+  
+  <div id="content">
+
+    <div [hidden]="!user">
+
+      <form *ngIf="user">
+      <!-- first name -->
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="userfirstname">First name:</label>
+        <input [(ngModel)]='user.FirstName' name='Firstname' type="text" class="form-control col-sm-6" id="userfirstname" aria-describedby="firstNameHelp" placeholder="First Name">
+        <small id="firstNameHelp" class="form-text text-muted col-sm-2">The first name</small>
+      </div>
+      <!-- last name -->
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="userlastname">Last name:</label>
+        <input [(ngModel)]='user.LastName' name='LastName' type="text" class="form-control col-sm-6" id="userlastname" aria-describedby="lasttNameHelp" placeholder="Last Name">
+        <small id="lasttNameHelp" class="form-text text-muted col-sm-2">The last name</small>
+      </div>
+       <!-- User name -->
+       <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="userUserName">Username:</label>
+          <input [(ngModel)]='user.UserName' name='UserName' type="text" class="form-control col-sm-6" id="userUserName" aria-describedby="userNameHelp" placeholder="Username">
+          <small id="userNameHelp" class="form-text text-muted col-sm-2">The username</small>
+        </div>
+       <!-- Phone name -->
+       <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="userPhone">Phone:</label>
+          <input [(ngModel)]='user.Phone' name='Phone' type="text" class="form-control col-sm-6" id="userPhone" aria-describedby="phoneHelp" placeholder="Phone">
+          <small id="phoneHelp" class="form-text text-muted col-sm-2">The phone</small>
+        </div>
+       <!-- Email name -->
+       <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="userEmail">Email:</label>
+          <input [(ngModel)]='user.Email' name='Email' type="text" class="form-control col-sm-6" id="userEmail" aria-describedby="emailHelp" placeholder="Email">
+          <small id="emailHelp" class="form-text text-muted col-sm-2">The email</small>
+        </div>
+       <!-- IsReviewer -->
+       <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="userReview">Reviewer:</label>
+          <input [(ngModel)]='user.IsReviewer' name='Review' type="checkbox" class="form-control col-sm-6" id="userReview" aria-describedby="isReviewerHelp" placeholder="Is Reviewer">
+          <small id="isReviewerHelp" class="form-text text-muted col-sm-2">Can they review?</small>
+        </div>
+      <!--  Is Admin -->
+      <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="userAdmin">Admin:</label>
+          <input [(ngModel)]='user.IsAdmin' name='Admin' type="checkbox" class="form-control col-sm-6" id="userAdmin" aria-describedby="isAdminHelp" placeholder="Is Admin">
+          <small id="isAdminHelp" class="form-text text-muted col-sm-2">Are they administration?</small>
+        </div>
+       <!-- PW Change required -->
+       <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="userPWChange">Pwd Change:</label>
+          <input [(ngModel)]='user.PasswordNeedsChanged' name='PwChange' type="checkbox" class="form-control col-sm-6" id="userPWChange" aria-describedby="PwChangeHelp" placeholder="Password Change Required">
+          <small id="PwChangeHelp" class="form-text text-muted col-sm-2">Password change required for this user?</small>
+        </div> 
+        <!-- Active User -->
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2" for="userActiveChange">Active:</label>
+            <input [(ngModel)]='user.Active' name='PwChange' type="checkbox" class="form-control col-sm-6" id="userActiveChange" aria-describedby="ActiveChangeHelp" placeholder="Set User Active">
+            <small id="ActiveChangeHelp" class="form-text text-muted col-sm-2">Set the user as Active or Inactive</small>
+          </div> 
+      <div>
+          <button (click)="change()" class="btn btn-warning">Change</button>
+      </div>
+
+    </form>
+  <div [hidden]="user"> NOT LOADED YET</div>
+
+  </div> <!-- end content div -->
+
+
+
+          <!--<thead class="thead-dark">
+          <tr>
+            <th>User Id: {{user.Id}}, Created: {{user.DateCreated}}, Updated: {{user.DateUpdated}}  Modified By: {{user.UpdateLastUserID}}</th>
+            <th></th>
+          </tr>
+        <tbody>
+          <tr><th>Active</th>         <td>{{user.Active}}</td></tr>
+          <tr><th>Username</th>       <td>{{user.UserName}}</td></tr>
+          <tr><th>Name</th>           <td>{{user.FirstName}} {{user.LastName}}</td></tr>
+          <tr><th>Phone</th>          <td>{{user.Phone}}</td></tr>
+          <tr><th>Email</th>          <td>{{user.Email}}</td></tr>
+          <tr><th>IsReviewer?</th>    <td>{{user.IsReviewer}}</td></tr>
+          <tr><th>IsAdmin?</th>       <td>{{user.IsAdmin}}</td></tr>
+          <tr><th>PW Change Req?</th> <td>{{user.PasswordNeedsChanged}}</td></tr>
+        </tbody>
+      </table>-->
+
+  
+

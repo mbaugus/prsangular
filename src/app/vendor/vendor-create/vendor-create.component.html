@@ -1,0 +1,77 @@
+<div id="pagetitle">
+    <h1>{{pagetitle}}</h1>
+</div>
+  
+  <div id="content">
+
+    <div [hidden]="!vendor">
+
+      <form *ngIf="vendor">
+      <!-- Code  -->
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="vendorCode">Code:</label>
+        <input [(ngModel)]='vendor.Code' name='vendorCode' type="text" class="form-control col-sm-6" id="vendorCode" aria-describedby="codeHelp" placeholder="Vendor Code">
+        <small id="codeHelp" class="form-text text-muted col-sm-2">The vendors unique code.</small>
+      </div>
+      <!--Name -->
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="vendorName">Name:</label>
+        <input [(ngModel)]='vendor.Name' name='vendorName' type="text" class="form-control col-sm-6" id="vendorName" aria-describedby="nameHelp" placeholder="Vendor Name">
+        <small id="nameHelp" class="form-text text-muted col-sm-2">The last name</small>
+      </div>
+       <!-- Address -->
+       <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="vendorAddress">Address:</label>
+          <input [(ngModel)]='vendor.Address' name='vendorAddress' type="text" class="form-control col-sm-6" id="vendorAddress" aria-describedby="addressHelp" placeholder="Vendor Address">
+          <small id="addressHelp" class="form-text text-muted col-sm-2">The vendors address.</small>
+        </div>
+       <!-- City -->
+       <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="vendorCity">City:</label>
+          <input [(ngModel)]='vendor.City' name='vendorCity' type="text" class="form-control col-sm-6" id="vendorCity" aria-describedby="cityHelp" placeholder="Vendor City">
+          <small id="cityHelp" class="form-text text-muted col-sm-2">The vendors city.</small>
+        </div>
+       <!-- State -->
+       <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="vendorState">State:</label>
+          <input [(ngModel)]='vendor.State' name='vendorState' type="text" class="form-control col-sm-6" id="vendorState" aria-describedby="stateHelp" placeholder="Vendor State">
+          <small id="stateHelp" class="form-text text-muted col-sm-2">The vendors state.</small>
+        </div>
+       <!-- Postal code -->
+       <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="vendorPostalCode">Postal Code:</label>
+          <input [(ngModel)]='vendor.PostalCode' name='vendorPostalCode' type="text" class="form-control col-sm-6" id="vendorPostalCode" aria-describedby="postalHelp" placeholder="Vendor Postalcode">
+          <small id="postalHelp" class="form-text text-muted col-sm-2">The vendors postal code.</small>
+        </div>
+      <!-- Email -->
+       <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="vendorEmail">Email:</label>
+          <input [(ngModel)]='vendor.Email' name='vendorEmail' type="text" class="form-control col-sm-6" id="vendorEmail" aria-describedby="emailHelp" placeholder="Vendor EmailAddress">
+          <small id="emailHelp" class="form-text text-muted col-sm-2">The vendors email address.</small>
+        </div>
+
+       <!-- Pre Approved -->
+       <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="vendorPreApproved">Preapproved:</label>
+          <input [(ngModel)]='vendor.IsPreApproved' name='vendorPreApproved' type="checkbox" class="form-control col-sm-6" id="vendorPreApproved" aria-describedby="preapprovedHelp" placeholder="Is PreApprovedr">
+          <small id="preapprovedHelp" class="form-text text-muted col-sm-2">Is this vendor preapproved?</small>
+        </div>
+      <!--  Active -->
+      <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="vendorActive">Active:</label>
+          <input [(ngModel)]='vendor.Active' name='vendorActive' type="checkbox" class="form-control col-sm-6" id="vendorActive" aria-describedby="activeHelp" placeholder="Is Active">
+          <small id="activeHelp" class="form-text text-muted col-sm-2">Is this vendor active?</small>
+        </div>
+      
+      <div>
+          <button (click)="create()" class="btn btn-warning">Create</button>
+      </div>
+    
+    </form>
+    <br>
+    <div *ngIf="error != ''"class="alert alert-primary" role="alert">
+        {{error}}
+      </div>
+  <div [hidden]="vendor"> NOT LOADED YET</div>
+
+  </div> <!-- end content div -->

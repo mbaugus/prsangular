@@ -1,0 +1,56 @@
+<div id="pagetitle">
+  <h1>{{pagetitle}}</h1>
+</div>
+
+<div *ngIf="pr">
+  <table class="table table-sm table-hover">
+
+    <thead>
+      <tr>
+        <th>
+
+          <p class="lead">Purchase Request Id: {{pr.Id}}</p>
+          <h6>Created: {{pr.DateCreated | date:'EEE, MMM d, y, h:mm:ss a' }}</h6>
+          <h6>Updated: {{pr.DateUpdated | date:'EEE, MMM d, y, h:mm:ss a'}} <span *ngIf="pr.UpdateLastUserID"> by <a routerLink="/users/detail/{{pr.UpdateLastUserID}}" routerLinkActive="activelink" >{{ pr.UpdateLastUserID }}</a></span></h6>
+          <div *ngIf="pr.ReasonForRejection === ''" class="alert alert-danger" role="alert">{{pr.ReasonForRejection}}</div>
+        
+        </th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+        <tr><th>Active</th>              <td>{{ pr.Active ? "Active" : "Inactive" }}</td></tr>
+        <tr><th>Created By</th>          <td>{{ pr.UserId}}</td></tr>
+        <tr><th>Description</th>         <td>{{ pr.Description }}</td></tr>
+        <tr><th>Needed by</th>           <td>{{ pr.DateNeeded }}</td></tr>
+        <tr><th>Justification</th>       <td>{{ pr.PartNumber }}</td></tr>
+        <tr><th>DevliveryMode</th>       <td>{{ pr.DevliveryMode }}</td></tr>
+        <tr><th>Status</th>              <td>{{ pr.Status }}</td></tr>
+        <tr><th>Total</th>               <td>{{ pr.Total | currency}}</td></tr>
+        <tr><th>DevliveryMode</th>       <td>{{ pr.DevliveryMode }}</td></tr>
+        <tr><th>ReasonForRejection</th>  <td>{{ pr.ReasonForRejection }}</td></tr>
+     </tbody>
+    </table>
+
+   <!-- *ngFor="let pr of prs" -->
+
+   <a routerLink="/purchaserequests/edit/{{pr.Id}}" class="btn btn-warning">Edit</a>
+   
+   <button (click)="remove()" class="btn btn-danger">Delete</button>
+   <a routerLink="/purchaserequests/editlines/{{pr.Id}}" class="btn btn-info">Edit Lines</a>  
+   <br><br>
+   <div *ngIf="prli" class="list-group" >
+     
+      <div class="list-group-item list-group-item-action active"><p class="text-center"></p>Requested items to be purchased.</div>
+      <div *ngFor="let p of prli" class="list-group-item list-group-item-action">
+        x{{p.Quantity}} | {{p.Product.Name}} | {{(p.Quantity * p.Product.Price) | currency}} 
+        <a routerLink="/purchaserequests/editlineitem/{{p.Id}}"><button class="btn-warning">Edit</button></a>
+        <button class="btn-danger" (click)="remove(p)">Remove</button>
+      </div>
+
+  </div> <!-- end hidden div for meat -->
+
+  <div [hidden]="pr">
+    <h1>This is hidden until loaded</h1>
+  </div>

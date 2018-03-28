@@ -1,0 +1,39 @@
+<div id="pagetitle">
+    <h1>{{pagetitle}}</h1>
+</div>
+
+
+  <div id="content" *ngIf="vendor">
+      <table class="table table-sm table-hover">
+        <thead>
+          <tr>
+            <th><h5>Vendor Id: {{vendor.Id}}</h5>
+              <h6>Created: {{vendor.DateCreated | date:'EEE, MMM d, y, h:mm:ss a' }}</h6>
+              <h6>Updated: {{vendor.DateUpdated | date:'EEE, MMM d, y, h:mm:ss a'}} <span *ngIf="vendor.UpdateLastUserID"> by <a routerLink="/users/detail/{{vendor.UpdateLastUserID}}" routerLinkActive="activelink" >{{ vendor.UpdateLastUserID }}</a></span></h6>
+            </th>
+            <th></th>
+          </tr>
+        <tbody>
+          <tr><th>Active</th>         <td>{{ vendor.Active ? "Active" : "Inactive" }}</td></tr>
+          <tr><th>Code</th>       <td>{{ vendor.Code }}</td></tr>
+          <tr><th>Name</th>           <td>{{ vendor.Name }}</td></tr>
+          <tr><th>Address</th>          <td>{{ vendor.Address }}</td></tr>
+          <tr><th>City</th>          <td>{{ vendor.City }}</td></tr>
+          <tr><th>State</th>    <td>{{ vendor.State }}</td></tr>
+          <tr><th>Postal Code</th>       <td>{{ vendor.PostalCode }}</td></tr>
+          <tr><th>Email</th>       <td>{{ vendor.Email}}</td></tr>
+          <tr><th>Preapproved?</th>       <td>{{ vendor.IsPreApproved ? "Yes" : "No" }}</td></tr>
+        </tbody>
+      </table>
+
+      <a routerLink="/vendors/edit/{{vendor.Id}}" routerLinkActive="activelink" class="btn btn-warning">Edit</a>
+      <button (click)="remove()" class="btn btn-danger">Delete</button>
+
+  </div> <!-- end hidden div for table -->
+
+  <div [hidden]="vendor">
+    This hides until load.
+  </div>
+
+  
+

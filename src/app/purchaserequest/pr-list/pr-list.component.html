@@ -1,0 +1,49 @@
+<div id="pagetitle">
+  <h1>{{pagetitle}}</h1>
+</div>
+
+<a routerLink="/purchaserequests/create" class="btn btn-primary">Create Purchase Request</a>
+
+<div *ngIf="prs" id="content">
+  <br>
+<table class="table table-sm text-center table-striped table-hover">
+  <thead class="thead-dark">
+    <tr>
+    <th scope="col">Date Created</th>
+    <th scope="col">From UserID</th>
+    <th scope="col">Description</th>
+    <th scope="col">Total</th>
+    <th scope="col">Date Needed</th>
+    <th scope="col">Devlivery Mode</th>
+    <th scope="col">Status</th>
+    <th scope="col">Active</th>
+    <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let pr of prs">
+    <td scope="row" >{{pr.DateCreated | date:'shortDate'}}</td>
+    <td scope="row"><a routerLink='/users/detail/{{pr.UserId}}'></a>{{pr.UserID}}</td>
+    <td>{{pr.Description}}</td>
+    <td>{{pr.Total | currency}}</td>
+    <td>{{pr.DateNeeded | date:'shortDate'}}</td>
+    <td>{{pr.DeliveryMode}}</td>
+    <td>{{pr.Status}}</td>
+    <td>{{pr.Active ? "Active" : "Inactive" }}</td>
+    
+    <td>
+
+      <a routerLink="/purchaserequests/detail/{{pr.Id}}" class="btn">Detail</a> |
+      <a routerLink="/purchaserequests/edit/{{pr.Id}}" class="btn">Edit</a> 
+    
+    </td>
+  </tr>
+</tbody>
+
+</table>
+</div> <!-- end hidden container -->
+
+<div [hidden]="prs">
+  <app-loader-image></app-loader-image>
+</div>

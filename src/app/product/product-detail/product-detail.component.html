@@ -1,0 +1,47 @@
+<div id="pagetitle">
+  <h1>{{pagetitle}}</h1>
+</div>
+
+<div id="content">
+  
+  <div [hidden]="!product">
+    <div *ngIf="product">
+    <table class="table table-sm table-hover">
+      <thead>
+        <tr>
+          <th>
+            <h6>Product Id: {{product.Id}}</h6>
+            <h6>Created: {{product.DateCreated | date:'EEE, MMM d, y, h:mm:ss a' }}</h6>
+              <h6>Updated: {{product.DateUpdated | date:'EEE, MMM d, y, h:mm:ss a'}} <span *ngIf="product.UpdateLastUserID"> by <a routerLink="/users/detail/{{product.UpdateLastUserID}}" routerLinkActive="activelink" >{{ product.UpdateLastUserID }}</a></span></h6>
+          </th>
+          <th></th>
+        </tr>
+        </thead>
+      <tbody>
+        <tr><th>Active</th>         <td>{{ product.Active ? "Active" : "Inactive" }}</td></tr>
+        <tr><th>Name</th>           <td>{{ product.Name}}</td></tr>
+        <tr><th>Price</th>          <td>{{ product.Price }}</td></tr>
+        <tr><th>VendorID / Name</th><td><a routerLink="/vendors/detail/{{product.VendorID}}">{{ product.VendorID }} / {{ product.Vendor.Name }}</a></td></tr>
+        <tr><th>PartNumber</th>     <td>{{ product.PartNumber }}</td></tr>
+        <tr><th>Unit</th>           <td>{{ product.Unit }}</td></tr>
+
+        <tr>
+          <th>PhotoPath</th>      
+          <td>{{ product.PhotoPath }}
+            <img src={{product.PhotoPath}}>
+          </td>
+        </tr>
+        
+        <tr><th>Last Updated By</th><td>{{ product.UpdatedLastUserID }}</td></tr>
+      </tbody>
+    </table>
+    <a routerLink="/products/edit/{{product.Id}}" class="btn btn-warning">Edit</a>
+    <button (click)="remove()" class="btn btn-danger">Delete</button>
+  </div>
+  </div> <!-- end hidden div for meat -->
+
+  <div [hidden]="product">
+    <h1>This is hidden until loaded</h1>
+  </div>
+
+</div> <!-- content -->

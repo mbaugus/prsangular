@@ -1,0 +1,43 @@
+<div id="pagetitle">
+    <h1>{{pagetitle}}</h1>
+  </div>
+  
+  <a routerLink="/vendors/create" class="btn btn-primary" routerLinkActive="activelink">Create Vendor</a>
+  
+  <div id="content">
+    <br>
+  <table class="table table-sm text-center table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">City</th>
+      <th scope="col">State</th>
+      <th scope="col">Active</th>
+      <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let vendor of vendors">
+      <td scope="row" >{{vendor.Id}}</td>
+      <td scope="row">{{vendor.Code}}</td>
+      <td>{{vendor.Name}}</td>
+      <td>{{vendor.City}}</td>
+      <td>{{vendor.State}}</td>
+      <td>{{vendor.Active ? "Yes" : "No" }}</td>
+      <td>
+        <a routerLink="/vendors/detail/{{vendor.Id}}" class="btn">Detail</a> |
+        <a routerLink="/vendors/edit/{{vendor.Id}}" class="btn">Edit</a>  
+      </td>
+  
+      <!--<td>{{user.IsReviewer}}</td>
+      <td>{{user.IsAdmin}}</td>
+      <td>{{user.Active}}</td>-->
+    </tr>
+  </tbody>
+  
+  </table>
+  
+  </div>

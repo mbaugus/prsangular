@@ -1,0 +1,48 @@
+<div id="pagetitle">
+    <h1>{{pagetitle}}</h1>
+  </div>
+  
+  <a routerLink="/products/create" class="btn btn-primary">Create Product</a>
+
+  <div *ngIf="products.length > 0" id="content">
+    <br>
+  <table class="table table-sm text-center table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Part number</th>
+      <th scope="col">Vendor</th>
+      <th scope="col">Active</th>
+      <th scope="col">Thumbnail</th>
+      <th scope="col"></th>
+      </tr>
+    </thead>
+    
+    <tbody>
+    <tr *ngFor="let product of products">
+      <td scope="row" >{{product.Id}}</td>
+      <td scope="row">{{product.Name}}</td>
+      <td>{{product.Price | currency}}</td>
+      <td>{{product.PartNumber}}</td>
+      <td><a routerLink='/vendors/detail/{{product.VendorID}}'>{{product.Vendor.Name}}</a></td>
+      <td>{{product.Active ? "Active" : "Inactive" }}</td>
+      <td><app-image-product [path]="product.PhotoPath" [thumbnail]="true"></app-image-product></td>
+      <td>
+        <a routerLink="/products/detail/{{product.Id}}" class="btn">Detail</a> |
+        <a routerLink="/products/edit/{{product.Id}}" class="btn">Edit</a>  
+      </td>
+      
+      <!--<td>{{user.IsReviewer}}</td>
+      <td>{{user.IsAdmin}}</td>
+      <td>{{user.Active}}</td>-->
+    </tr>
+  </tbody>
+  
+  </table>
+  </div>
+
+  <div [hidden]="products.length > 0">
+    <app-loader-image></app-loader-image>
+  </div>

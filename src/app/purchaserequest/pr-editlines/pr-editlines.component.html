@@ -1,0 +1,31 @@
+<div *ngIf="pr">
+  <h6>{{pr.Id}} {{pr.Total}} {{pr.Description}}</h6>
+
+  <div class="list-group">
+
+      <div class="list-group-item list-group-item-action flex-column align-items-start active">
+        <p class="text-center"></p>Requested items to be purchased.
+      </div>
+
+      <div *ngFor="let p of prli" class="list-group-item list-group-item-action ">
+          <div class="d-flex w-100 justify-content-between">
+            <h6 class="mb-1">{{p.Product.Name}}</h6>
+            <h6 class>otal: {{ (p.Quantity * p.Product.Price) | currency }}</h6>
+            <small><button class="btn-danger" (click)="remove(p)">Remove</button></small>
+          </div>
+          <input type="number" [(ngModel)]="p.Quantity">
+
+       <!-- x{{p.Quantity}} | {{p.Product.Name}} | {{(p.Quantity * p.Product.Price) | currency}}--> 
+      
+      </div>
+  <!--
+    Id: number;
+    PurchaseRequestID: number;
+    ProductID: number;
+    Quantity: number;
+    Active: boolean;
+    DateCreated: string;
+    DateUpdated: string;
+    UpdateLastUserID: number;
+  -->
+</div>

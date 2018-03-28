@@ -1,0 +1,32 @@
+
+
+
+a{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #FFF;
+    text-decoration-style: none;
+
+    transition: color 5.0s ease;
+    transition: font-size 1.0s ease;
+    transition: text-shadow 5.0s ease;
+    transition: letter-spacing 1.5s ease;
+}
+a:hover{
+    text-decoration: none;
+    color: #5b1deb;
+    font-size: 1.6em;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #023e4d;
+}
+
+.activelink{
+    text-decoration: underline;
+}
+.activelink:hover{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #FFF;
+    text-decoration-style: none;
+    text-decoration: underline;
+    text-shadow: none;
+}

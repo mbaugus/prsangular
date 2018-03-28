@@ -1,0 +1,76 @@
+<div id="pagetitle">
+    <h1>{{pagetitle}}</h1>
+</div>
+  
+  <div *ngIf="product" id="content">
+    <form>
+      <!-- Name  -->
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="productName">Name:</label>
+        <input [(ngModel)]='product.Name' name='productName' type="text" class="form-control col-sm-6" id="productName" aria-describedby="nameHelp" placeholder="Product Name">
+        <small id="nameHelp" class="form-text text-muted col-sm-2">The name of product</small>
+      </div>
+    
+      <!-- Vendor -->
+      <!--
+      <div *ngIf="vendors" class="form-group row">
+      <label class="col-form-label col-sm-2">{{product.Vendor.Name}}</label>
+      <select class="form-control col-sm-6" [(ngModel)]='product.Vendor' [ng-options]="x.Name for x in vendors"></select>
+      </div>
+      -->
+
+    <!--  ngmode = 'product.vendorID [compareWith]='compareFn'  option *ngFor  
+       [selected]="vendor.ID == product.VendorID  -->
+
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="vendorList">Vendors: {{product.Vendor.Name}}</label>
+        <div class="col-sm-6 select-list">
+          <select [(ngModel)]='product.VendorID' [compareWith]='compareFn' class='form-control' name='Vendor' id='product-Vendor'>
+              <option *ngFor="let vendor of vendors" [ngValue]="vendor.Id" [selected]="vendor.Id == product.VendorID">{{vendor.Name}}</option>
+            </select>
+        </div>
+       </div>
+
+      <!-- Part Number -->
+      <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="partNumber">Part number:</label>
+          <input [(ngModel)]='product.PartNumber' name='partNumber' type="text" class="form-control col-sm-6" id="partNumber" aria-describedby="partNumberHelp" placeholder="Part number">
+          <small id="partNumberHelp" class="form-text text-muted col-sm-2">The vendors part number for this product.</small>
+        </div>
+      <!-- Unit -->
+      <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="productUnit">Unit:</label>
+          <input [(ngModel)]='product.Unit' name='productUnit' type="text" class="form-control col-sm-6" id="productUnit" aria-describedby="unitHelp" placeholder='Product Unit'>
+          <small id="unitHelp" class="form-text text-muted col-sm-2">The unit for this product.</small>
+        </div>
+      <!-- Price -->
+      <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="productPrice">Price:</label>
+          <input [(ngModel)]='product.Price' name='productPrice' type="decimal" class="form-control col-sm-6" id="productPrice" aria-describedby="priceHelp" placeholder='Price'>
+          <small id="priceHelp" class="form-text text-muted col-sm-2">The price of this product.</small>
+        </div>
+      <!-- PhotoPath -->
+      <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="productPhotoPath">Photo Path:</label>
+          <input [(ngModel)]='product.PhotoPath' name='productPhotoPath' type="text" class="form-control col-sm-6" id="productPhotoPath" aria-describedby="photoPathHelp" placeholder='Products photo URL'>
+          <small id="photoPathHelp" class="form-text text-muted col-sm-2">The filename to this product.  Must be uploaded.</small>
+        </div>
+      <!-- Active -->
+
+      <!-- upload file -->
+      <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="uploadPhoto">Upload Photo:</label>
+          <input (change)='fileChange($event)' [disabled]='loading' type="file" class="form-control col-sm-6" id="file" accept="image/*" name="file">
+          <h3 *ngIf="uploadError.length > 0" class="text-red">{{uploadError}}</h3>
+          <button (click)="uploadimage()" *ngIf="valid" class="col-sm-2">Upload <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
+      </div>
+
+      <div>
+          <button (click)="change()" class="btn btn-warning">Change</button>
+      </div>
+      
+    </form>
+
+  </div>
+
+  <div [hidden]="product"> NOT LOADED YET</div>

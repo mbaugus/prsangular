@@ -1,0 +1,13 @@
+<div id="menu">
+
+<nav>
+    <ul>
+
+      <li><a routerLink="/home" routerLinkActive="activelink" >PRS</a></li>
+      <li *ngFor="let menu of menuItems">
+        <app-menu-item [menuItem]="menu"></app-menu-item>
+      </li>
+    </ul>
+</nav>
+
+</div> <!-- end menu div -->
