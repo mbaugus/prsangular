@@ -8,6 +8,7 @@ import { PrService } from '../../services/pr.service';
   styleUrls: ['./pr-list.component.css']
 })
 export class PrListComponent implements OnInit {
+  pagetitle = 'Purchase Request List'
   prs: PurchaseRequest[] = [];
   constructor(private PurchaseRequestSvc: PrService) { }
   ngOnInit() {

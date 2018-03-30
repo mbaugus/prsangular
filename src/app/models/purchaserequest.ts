@@ -6,14 +6,14 @@ export class PurchaseRequest {
     Description: string;
     Justification: string;
     DateNeeded: string;
-    DevliveryMode: string;
+    DeliveryMode: string;
     Status: string;
     Total: number;
     Active: boolean;
     ReasonForRejection: string;
     DateCreated: string;
     DateUpdated: string;
-    UpdateLastUserID: number;
+    UpdateLastUserId: number;
     User: User;
     PurchaseRequestLineItems: {};
     constructor(
@@ -22,14 +22,14 @@ export class PurchaseRequest {
         Description: string,
         Justification: string,
         DateNeeded: string,
-        DevliveryMode: string,
+        DeliveryMode: string,
         Status: string,
         Total: number,
         Active: boolean,
         ReasonForRejection: string,
         DateCreated: string,
         DateUpdated: string,
-        UpdateLastUserID: number,
+        UpdateLastUserId: number,
         User: User,
         PurchaseRequestLineItems: {}
     ) {
@@ -38,14 +38,14 @@ export class PurchaseRequest {
         this.Description = Description;
         this.Justification = Justification;
         this.DateNeeded = DateNeeded;
-        this.DevliveryMode = DevliveryMode;
+        this.DeliveryMode = DeliveryMode;
         this.Status = Status;
         this.Total = Total;
         this.Active = Active;
         this.ReasonForRejection = ReasonForRejection;
         this.DateCreated = DateCreated;
         this.DateUpdated = DateUpdated;
-        this.UpdateLastUserID = UpdateLastUserID;
+        this.UpdateLastUserId = UpdateLastUserId;
         this.User = User;
         this.PurchaseRequestLineItems = PurchaseRequestLineItems;
     }

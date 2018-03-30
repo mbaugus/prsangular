@@ -12,7 +12,7 @@ export class Product {
     Active: boolean;
     DateCreated: string;
     DateUpdated: string;
-    UpdatedLastUserID: number;
+    UpdatedLastUserId: number;
 
     constructor(
         Id: number,
@@ -25,7 +25,7 @@ export class Product {
         Active: boolean,
         DateCreated: string,
         DateUpdated: string,
-        UpdatedLastUserID: number,
+        UpdatedLastUserId: number,
         Vendor: Vendor
     ) {
         this.Id = Id;
@@ -38,7 +38,7 @@ export class Product {
         this.Active = Active;
         this.DateCreated = DateCreated;
         this.DateUpdated = DateUpdated;
-        this.UpdatedLastUserID = UpdatedLastUserID;
+        this.UpdatedLastUserId = UpdatedLastUserId;
         this.Vendor = Vendor;
     }
 }

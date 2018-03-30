@@ -1,9 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 // routing
 import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard } from './support/authguard';
+import { JwtInterceptor } from './support/jwt-interceptor';
+
 // services
 import { UserService } from './services/user.service';
 import { VendorService } from './services/vendor.service';
@@ -11,6 +16,7 @@ import { ProductService } from './services/product.service';
 import { FileService } from './services/file.service';
 import { PrService } from './services/pr.service';
 import { PrliService } from './services/prli.service';
+import { SystemService } from './services/system.service';
 
 // base components
 import { AppComponent } from './app.component';
@@ -48,6 +54,10 @@ import { PrliDetailComponent } from './purchaserequest-lineitem/prli-detail/prli
 import { PrliEditComponent } from './purchaserequest-lineitem/prli-edit/prli-edit.component';
 import { PrliListComponent } from './purchaserequest-lineitem/prli-list/prli-list.component';
 import { PrEditLinesComponent } from './purchaserequest/pr-editlines/pr-editlines.component';
+import { LoginComponent } from './login/login/login.component';
+
+// authentication headers on each request
+
 
 
 @NgModule({
@@ -80,13 +90,15 @@ import { PrEditLinesComponent } from './purchaserequest/pr-editlines/pr-editline
     PrliDetailComponent,
     PrliEditComponent,
     PrliListComponent,
-    PrEditLinesComponent
+    PrEditLinesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     UserService,
@@ -94,7 +106,14 @@ import { PrEditLinesComponent } from './purchaserequest/pr-editlines/pr-editline
     ProductService,
     FileService,
     PrService,
-    PrliService
+    PrliService,
+    SystemService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+  },
   ],
   bootstrap: [AppComponent]
 })

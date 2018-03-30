@@ -2,7 +2,48 @@
   <h1>{{pagetitle}}</h1>
 </div>
 
-<div *ngIf="pr">
+<div *ngIf="pr" [hidden]="!addingLine">
+        <!-- Product -->
+        <h1>Add an item to your request.</h1>
+      <form *ngIf="NewPurchaseRequest">
+        <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="ProductID">Product:</label>
+          <input [(ngModel)]='NewPurchaseRequest.ProductID' name='ProductID' type="text"  class="form-control col-sm-6" id="ProductName" aria-describedby="ProductNameHelp">
+          <small id="ProductNameHelp" class="form-text text-muted col-sm-2">The product you wish to add.</small>
+        </div>
+
+        <div *ngIf="Products.length > 0">
+        <mat-form-field>
+            <input type="text" placeholder="Choose a Product" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let product of filteredProducts | async" [value]="product.Name">
+                {{ product.Name }}
+              </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        </div>
+
+        <div *ngIf="!Products || Products.length == 0">
+            <i class="fa fa-circle-o-notch fa-spin" style="font-size:36px"></i>
+        </div>
+
+        <!-- Quantity -->
+        <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="Quantity">Quantity:</label>
+          <input [(ngModel)]='NewPurchaseRequest.Quantity' name='Quantity' type="number" min='0' max='999' required class="form-control col-sm-6" id="Quantity" aria-describedby="QuantityHelp" placeholder="Quantity">
+          <small id="QuantityHelp" class="form-text text-muted col-sm-2">The amount of these you will need.</small>
+        </div>
+
+        <div>
+            <button (click)="CreateProduct()" class="btn btn-primary">Add</button>
+            <button (click)="CancelCreateProduct()" class="btn btn-danger">Cancel Add</button>
+        </div>
+        <div *ngIf="ProductErrorString.length > 0" class="">{{ProductError}}</div>
+      </form>
+</div>
+<div *ngIf="pr"  class="prdetail">
+  <div [hidden]="addingLine">
+      <h1>Purchase Request detail</h1>
   <table class="table table-sm table-hover">
 
     <thead>
@@ -35,11 +76,15 @@
 
    <!-- *ngFor="let pr of prs" -->
 
-   <a routerLink="/purchaserequests/edit/{{pr.Id}}" class="btn btn-warning">Edit</a>
-   
+   <a routerLink="/purchaserequests/edit/{{pr.Id}}" class="btn btn-warning">Edit </a>
    <button (click)="remove()" class="btn btn-danger">Delete</button>
-   <a routerLink="/purchaserequests/editlines/{{pr.Id}}" class="btn btn-info">Edit Lines</a>  
+   <a routerLink="/purchaserequests/editlines/{{pr.Id}}" class="btn btn-info">Edit Items</a>
+   <button (click)="showAddLine()" class="btn btn-primary">Add Item</button> 
+  </div>
    <br><br>
+
+   
+
    <div *ngIf="prli" class="list-group" >
      
       <div class="list-group-item list-group-item-action active"><p class="text-center"></p>Requested items to be purchased.</div>

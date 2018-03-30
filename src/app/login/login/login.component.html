@@ -1,0 +1,10 @@
+<div>
+  <h1>Log In</h1>
+  <label>Username: </label><input [(ngModel)]='username' type="text" autocomplete="true">
+  <br>
+  <label>Password: </label><input [(ngModel)]='password' type="text" autocomplete="true">
+  <br>
+  <button class="btn btn-warning" (click)='login()'>Login</button>
+  <div [hidden]="!visibleError" class="alert">Username or password incorrect.</div>
+  <img [src]='imgsrc' />
+</div>

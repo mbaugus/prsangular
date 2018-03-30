@@ -55,15 +55,15 @@
        <!-- Pre Approved -->
        <div class="form-group row">
           <label class="col-form-label col-sm-2" for="vendorPreApproved">Preapproved:</label>
-          <input [(ngModel)]='vendor.IsPreApproved' name='vendorPreApproved' type="checkbox" class="form-control col-sm-6" id="vendorPreApproved" aria-describedby="preapprovedHelp" placeholder="Is PreApprovedr">
+          <input [(ngModel)]='vendor.IsPreApproved' name='vendorPreApproved' type="checkbox" class="form-control col-sm-1" id="vendorPreApproved" aria-describedby="preapprovedHelp" placeholder="Is PreApprovedr">
           <small id="preapprovedHelp" class="form-text text-muted col-sm-2">Is this vendor preapproved?</small>
         </div>
       <!--  Active -->
       <div class="form-group row">
           <label class="col-form-label col-sm-2" for="vendorActive">Active:</label>
-          <input [(ngModel)]='vendor.Active' name='vendorActive' type="checkbox" class="form-control col-sm-6" id="vendorActive" aria-describedby="activeHelp" placeholder="Is Active">
+          <input [(ngModel)]='vendor.Active' name='vendorActive' type="checkbox" class="form-control col-sm-1" id="vendorActive" aria-describedby="activeHelp" placeholder="Is Active">
           <small id="activeHelp" class="form-text text-muted col-sm-2">Is this vendor active?</small>
-        </div>
+      </div>
       
       <div>
           <button (click)="change()" class="btn btn-warning">Change</button>

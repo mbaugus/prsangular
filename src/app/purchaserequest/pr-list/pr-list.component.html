@@ -4,7 +4,7 @@
 
 <a routerLink="/purchaserequests/create" class="btn btn-primary">Create Purchase Request</a>
 
-<div *ngIf="prs" id="content">
+<div *ngIf="prs.length > 0" id="content">
   <br>
 <table class="table table-sm text-center table-striped table-hover">
   <thead class="thead-dark">
@@ -24,19 +24,17 @@
   <tbody>
   <tr *ngFor="let pr of prs">
     <td scope="row" >{{pr.DateCreated | date:'shortDate'}}</td>
-    <td scope="row"><a routerLink='/users/detail/{{pr.UserId}}'></a>{{pr.UserID}}</td>
+    <td scope="row"><a routerLink='/users/detail/{{pr.UserId}}'>{{pr.UserId}}</a></td>
     <td>{{pr.Description}}</td>
     <td>{{pr.Total | currency}}</td>
     <td>{{pr.DateNeeded | date:'shortDate'}}</td>
     <td>{{pr.DeliveryMode}}</td>
-    <td>{{pr.Status}}</td>
+    <td><div [ngClass]="{'alert-heading': pr.Status === 'NEW'}">{{pr.Status}}</div></td>
     <td>{{pr.Active ? "Active" : "Inactive" }}</td>
     
     <td>
-
       <a routerLink="/purchaserequests/detail/{{pr.Id}}" class="btn">Detail</a> |
       <a routerLink="/purchaserequests/edit/{{pr.Id}}" class="btn">Edit</a> 
-    
     </td>
   </tr>
 </tbody>

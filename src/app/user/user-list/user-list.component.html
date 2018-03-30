@@ -4,7 +4,7 @@
 
 <a routerLink="/users/create" class="btn btn-primary">Create User</a>
 
-<div id="content">
+<div *ngIf="users.length > 0" id="content">
   <br>
 <table class="table table-sm text-center table-striped table-hover">
   <thead class="thead-dark">

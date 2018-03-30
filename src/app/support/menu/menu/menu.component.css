@@ -17,3 +17,59 @@ a{
     margin-right: 10px;
     color: rgb(0, 255, 0)
 }
+
+ .mydropbtn{
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  margin: 0;
+  font-family: inherit;
+  }
+
+  
+
+.mydropdown{
+    margin-right: 10px;
+    margin-top: 2px;
+    float: right;
+    overflow: hidden;
+}
+
+.my-dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 120px; 
+    border-radius:8px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.my-dropdown-link {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.my-dropdown-link:hover{
+    cursor: pointer;
+    background-color: rgb(238, 239, 241);
+}
+
+.mydropdown:hover .my-dropdown-content {
+    display: block;
+  }

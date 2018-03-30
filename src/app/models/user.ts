@@ -9,7 +9,8 @@ export class User {
     IsReviewer: boolean;
     IsAdmin: boolean;
     Active: boolean;
-
+    SessionId: string;
+    UpdateLastUserId: number;
     constructor(
         Id: number,
         Username: string,
@@ -20,7 +21,8 @@ export class User {
         Email: string,
         IsReviewer: boolean,
         IsAdmin: boolean,
-        Active: boolean) {
+        Active: boolean,
+        UpdateLastUserId: number) {
             this.Id = Id;
             this.Username = Username;
             this.Password = Password;
@@ -31,5 +33,6 @@ export class User {
             this.IsReviewer = IsReviewer;
             this.IsAdmin = IsAdmin;
             this.Active = Active;
+            this.UpdateLastUserId = UpdateLastUserId;
         }
 }

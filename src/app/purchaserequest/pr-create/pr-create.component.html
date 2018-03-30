@@ -1,0 +1,36 @@
+<div id="pagetitle">
+    <h1>{{pagetitle}}</h1>
+</div>
+  
+  <div id="content">
+
+      <form *ngIf="pr">
+      <!-- description-->
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="Description">Description:</label>
+        <input [(ngModel)]='pr.Description' name='Description' type="text"  class="form-control col-sm-6" id="Description" aria-describedby="NameDescription" placeholder="Purchase Request Description">
+        <small id="DescriptionHelp" class="form-text text-muted col-sm-2">The purchase request description.</small>
+      </div>
+      <!-- date needed -->
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="DateNeeded">Date Needed:</label>
+        <input [(ngModel)]='pr.DateNeeded' name='DateNeeded' type="date" required class="form-control col-sm-6" id="DateNeeded" aria-describedby="DateNeededHelp" placeholder="Date Needed">
+        <small id="DateNeededHelp" class="form-text text-muted col-sm-2">The date we need this by.</small>
+      </div>
+       <!-- Justification -->
+       <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="Justification">Reason:</label>
+          <input [(ngModel)]='pr.Justification' name='Justification' type="text" class="form-control col-sm-6" id="Justification" aria-describedby="JustificationHelp" placeholder="Reason/Justification">
+          <small id="JustificationHelp" class="form-text text-muted col-sm-2">The justification/reason for this request</small>
+        </div>
+       <!--Delivery Mode -->
+       <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="DevliveryMode">Devlivery Mode:</label>
+          <input [(ngModel)]='pr.DeliveryMode' name='Phone' type="text" class="form-control col-sm-6" id="DevliveryMode" aria-describedby="DevliveryModeHelp" placeholder="Devlivery Mode">
+          <small id="DevliveryMode" class="form-text text-muted col-sm-2">The delivery method of choice for this order.</small>
+        </div>     
+      <div>
+          <button (click)="create()" class="btn btn-warning">Create</button>
+      </div>
+    </form>
+

@@ -4,7 +4,7 @@
   
   <a routerLink="/vendors/create" class="btn btn-primary" routerLinkActive="activelink">Create Vendor</a>
   
-  <div id="content">
+  <div *ngIf="vendors.length > 0" id="content">
     <br>
   <table class="table table-sm text-center table-striped table-hover">
     <thead class="thead-dark">

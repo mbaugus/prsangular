@@ -15,6 +15,7 @@ export class PrService {
     return this.http.get(url + 'Get/' + id) as Observable<PurchaseRequest>;
   }
   Create(pr: PurchaseRequest): Observable<any> {
+    console.log(pr);
     return this.http.post(url + 'Create', pr) as Observable<any>;
   }
   Change(pr: PurchaseRequest): Observable<any> {

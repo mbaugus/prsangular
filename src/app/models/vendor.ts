@@ -11,7 +11,7 @@ export class Vendor {
     Active: boolean;
     DateCreated: string;
     DateUpdated: string;
-    UpdateLastUserID: number;
+    UpdateLastUserId: number;
     constructor(
         Id: number,
         Code: string,
@@ -25,7 +25,19 @@ export class Vendor {
         Active: boolean,
         DateCreated: string,
         DateUpdated: string,
-        UpdateLastUserID: number
+        UpdateLastUserId: number
     ) {
+        this.Id = Id;
+        this.Name = Name;
+        this.Address = Address;
+        this.State = State;
+        this.City = City;
+        this.PostalCode = PostalCode;
+        this.Email = Email;
+        this.IsPreApproved = IsPreApproved;
+        this.Active = Active;
+        this.DateCreated = DateCreated;
+        this.DateUpdated = DateUpdated;
+        this.UpdateLastUserId = UpdateLastUserId;
     }
 }
