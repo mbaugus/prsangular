@@ -4,3 +4,26 @@
 .prdetail{
     transition: all linear 0.5s;
 }
+.addLineContainer{
+    padding: 0px 0px 25px 0px;
+    -webkit-box-shadow: 10px 20px 42px 10px rgba(0,0,0,0.63);
+    -moz-box-shadow: 10px 20px 42px 10px rgba(0,0,0,0.63);
+    box-shadow: 10px 20px 42px 10px rgba(0,0,0,0.63);
+    border-radius: 8px;
+}
+
+.addLineHeader{
+    margin: 0px;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    background-color: #007bff;
+}
+
+.containerBox{
+    margin: 20px;
+}
+
+.trash:hover{
+    cursor: pointer;
+}

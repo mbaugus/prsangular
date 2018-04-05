@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import {Observable, ObservableInput} from 'rxjs/Observable';
 import { User } from '../models/user';
 
 const url = 'http://localhost:61165/Users/';
@@ -11,7 +11,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   List(): Observable<User[]> {
-    return this.http.get(url + '/List') as Observable<User[]>;
+    return this.http.get(url + 'List') as Observable<User[]>;
   }
   Get(id: string): Observable<User> {
     return this.http.get(url + 'Get/' + id) as Observable<User>;
@@ -24,5 +24,8 @@ export class UserService {
   }
   Remove(user: User): Observable<any> {
     return this.http.post(url + 'Remove', user) as Observable<any>;
+  }
+  ChangePassword(oldpassword: string, newpassword: string): Observable<any> {
+    return this.http.post(url + 'Changepw', {oldpassword, newpassword});
   }
 }

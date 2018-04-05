@@ -1,6 +1,7 @@
-<div id="pagetitle">
-    <h1>{{pagetitle}}</h1>
-</div>
+<p class="lead">{{pagetitle}}</p>
+<app-breadcrumb></app-breadcrumb>
+<hr class="my-2">
+
   
   <div id="content">
 
@@ -25,7 +26,7 @@
         </div>
        <!--Delivery Mode -->
        <div class="form-group row">
-          <label class="col-form-label col-sm-2" for="DevliveryMode">Devlivery Mode:</label>
+          <label class="col-form-label col-sm-2" for="DevliveryMode">Delivery Mode:</label>
           <input [(ngModel)]='pr.DeliveryMode' name='Phone' type="text" class="form-control col-sm-6" id="DevliveryMode" aria-describedby="DevliveryModeHelp" placeholder="Devlivery Mode">
           <small id="DevliveryMode" class="form-text text-muted col-sm-2">The delivery method of choice for this order.</small>
         </div>     

@@ -23,11 +23,20 @@ export class SystemService {
     this.LoggedInAs.emit('');
   }
   GetUser(): User {
-    const user: User = JSON.parse(localStorage.getItem('currentUser'));
-    return user;
+     const user: User = JSON.parse(localStorage.getItem('currentUser'));
+     if (!user || !user.Active) {
+       return null;
+     }
+     let realUser: User = new User();
+     realUser.Copy(user);
+     console.log("Real user", realUser);
+     return realUser;
   }
   AttemptLogin(username: string, password: string) {
     return this.http.post(url , { user: username, pw: password }) as Observable<any>;
+  }
+  CheckIfSessionValid()  {
+    return this.http.post(url + '/ping', { test: 'test' }) as Observable<any>;
   }
 
 }

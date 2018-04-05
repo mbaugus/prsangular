@@ -1,0 +1,85 @@
+<p class="lead">{{pagetitle}}</p>
+<app-breadcrumb></app-breadcrumb>
+<hr class="my-2">
+
+  <div *ngIf="pr"  class="prdetail">
+     <div *ngIf="prli" class="list-group" >
+        <div class="list-group-item list-group-item-action active">
+          Item list
+        </div> <!-- end header row -->
+
+        <div *ngFor="let p of prli" class="list-group-item list-group-item-action">
+          
+          <div class="row">
+  
+            <div class="col-sm-2">
+              {{p.Quantity}} <i class="fas fa-times"></i> 
+            </div>
+  
+            <div class="col-sm-4">
+                {{p.Product.Name}}
+            </div>
+  
+            <div class="col-sm-4">
+                {{(p.Quantity * p.Product.Price) | currency}}
+            </div>
+        </div>
+      </div> <!-- end hidden div for meat -->
+    </div>
+    <br>
+    <div class="responsive-table">
+        <table class="table table-sm table-hover">
+            <tr><th>Created</th><td>{{pr.DateCreated | date:'EEE, MMM d, y, h:mm:ss a' }} 
+                <span *ngIf="pr.User"> by <a routerLink="/users/detail/{{pr.User.Id}}">
+                  {{pr.User.Username}}</a></span></td></tr>
+              
+              <tr><th>Updated</th><td>{{pr.DateUpdated | date:'EEE, MMM d, y, h:mm:ss a'}} 
+                <span *ngIf="pr.UpdateLastUserId"> by <a routerLink="/users/detail/{{pr.UpdateLastUserId}}" routerLinkActive="activelink" >
+                  {{ pr.UpdateLastUserId }}</a></span></td></tr>
+
+              <tr><th>Description</th>         <td>{{ pr.Description }}</td></tr>
+              <tr><th>Needed by</th>           <td>{{ pr.DateNeeded | date:'shortDate'}}</td></tr>
+              <tr><th>Reason for Order</th>       <td>{{ pr.Justification }}</td></tr>
+              <tr><th>DeliveryMode</th>       <td>{{ pr.DeliveryMode }}</td></tr>
+              <tr><th>Total</th>               <td>{{ pr.Total | currency}}</td></tr>
+          </table>
+          </div>
+
+          <br>
+      <div class="groupbox">
+        <div class="groupheader"><h4>Current Status: {{pr.Status}}</h4></div>
+          <div class="groupcontent">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-2">
+                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" (change)="handleChange($event, 'approve')">
+                 <label class="form-check-label" for="exampleRadios1">&nbsp;&nbsp;Approve</label>
+                </div>
+
+              <div class="col-2">
+                <label class="form-check-label" for="reasonForDenying">Reason for denying</label>
+              </div>
+                <div class="col-6">
+                  <input [(ngModel)]="reasonForDenital" class="form-check-input maxlength" type="text"  [disabled]="denyReasonDisabled" name="reasonForDenying" id="reasonForDenying">
+                </div>
+             </div>
+
+          <br>
+            <div class="row">
+                <div class="col-2">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" (change)="handleChange($event, 'deny')" value="option2" checked>
+                  <label class="form-check-label" for="exampleRadios2">&nbsp;&nbsp;Deny</label>
+                  </div>
+                  <div class="col-2">
+                    <div class="btn btn-warning" (click)="submitReview()">Submit</div>
+                  </div>
+            </div>
+            </div>
+        </div>
+        </div>
+  </div><!-- end ngif pr PrDetail class div -->
+  
+    <div [hidden]="pr">
+      <h1>This is hidden until loaded</h1>
+    </div>
+  

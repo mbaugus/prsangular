@@ -1,6 +1,7 @@
-<div id="pagetitle">
-    <h1>{{pagetitle}}</h1>
-</div>
+<p class="lead">{{pagetitle}}</p>
+<app-breadcrumb></app-breadcrumb>
+<hr class="my-2">
+
   
   <div *ngIf="product" id="content">
     <form>
@@ -54,7 +55,7 @@
           <label class="col-form-label col-sm-2" for="productPhotoPath">Photo Path:</label>
           <input [(ngModel)]='product.PhotoPath' name='productPhotoPath' type="text" class="form-control col-sm-6" id="productPhotoPath" aria-describedby="photoPathHelp" placeholder='Products photo URL'>
           <small id="photoPathHelp" class="form-text text-muted col-sm-2">The filename to this product.  Must be uploaded.</small>
-        </div>
+      </div>
       <!-- Active -->
 
       <!-- upload file -->
@@ -68,7 +69,6 @@
       <div>
           <button (click)="change()" class="btn btn-warning">Change</button>
       </div>
-      
     </form>
 
   </div>

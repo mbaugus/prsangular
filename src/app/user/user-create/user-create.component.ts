@@ -13,7 +13,7 @@ import { User } from '../../models/user';
 
 export class UserCreateComponent implements OnInit {
 
-  user: User = new User(0, '', '', '', '', '', '', true, false, true);
+  user: User = new User(0, '', '', '', '', '', '', true, false, true, 0);
 
   pagetitle = 'Create User';
   constructor(

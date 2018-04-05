@@ -1,0 +1,46 @@
+<p class="lead">{{pagetitle}}</p>
+<app-breadcrumb></app-breadcrumb>
+<hr class="my-2">
+
+  <div *ngIf="prs.length > 0" id="content">
+    <br>
+  <table class="table table-sm text-center table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+      <th scope="col">Created</th>
+      <th scope="col">User</th>
+      <th scope="col">Description</th>
+      <th scope="col">Total</th>
+      <th scope="col">Date Needed</th>
+      <th scope="col">Devlivery Mode</th>
+      <th scope="col">Status</th>
+      <th scope="col"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+
+    
+    <tr *ngFor="let pr of prs">
+      <ng-container *ngIf="pr.Status === 'REVIEW'">
+      <td scope="row" >{{pr.DateCreated | date:'shortDate'}}</td>
+      <td scope="row"><a routerLink='/users/detail/{{pr.UserId}}'>{{pr.User.Username}}</a></td>
+      <td>{{pr.Description}}</td>
+      <td>{{pr.Total | currency}}</td>
+      <td>{{pr.DateNeeded | date:'shortDate'}}</td>
+      <td>{{pr.DeliveryMode}}</td>
+      <td>{{pr.Status}}</td>   
+      <td>
+          <a routerLink="/purchaserequests/review/{{pr.Id}}" class="btn"><i class="fas fa-edit"></i></a>
+      </td>
+    </ng-container>
+    </tr>
+  </tbody>
+  
+  </table>
+  </div> <!-- end hidden container -->
+  
+  <div [hidden]="prs">
+    <app-loader-image></app-loader-image>
+  </div>
+  

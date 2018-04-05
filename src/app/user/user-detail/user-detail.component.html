@@ -1,20 +1,11 @@
-<div id="pagetitle">
-    <h1>{{pagetitle}}</h1>
-</div>
-
+<p class="lead">{{pagetitle}}</p>
+<app-breadcrumb></app-breadcrumb>
 <div [hidden]="!user">
 
   <div *ngIf="user" id="content">
       <table class="table table-sm table-hover">
-        <thead>
-          <tr>
-            <th>
-            <h5>User Id: {{user.Id}}</h5>
-            <h6>Created: {{user.DateCreated | date:'EEE, MMM d, y, h:mm:ss a' }}</h6>
-            <h6>Updated: {{user.DateUpdated | date:'EEE, MMM d, y, h:mm:ss a'}}<span *ngIf="user.UpdateLastUserID">by <a routerLink="/users/detail/{{user.UpdateLastUserID}}"> {{ user.UpdateLastUserID }}</a></span></h6>
-            </th>
-          </tr>
-        <tbody>
+            <tr><th>Created</th><td>{{user.DateCreated | date:'EEE, MMM d, y, h:mm:ss a' }}</td></tr>
+            <tr><th>Updated</th><td>{{user.DateUpdated | date:'EEE, MMM d, y, h:mm:ss a'}}<span *ngIf="user.UpdateLastUserID">by <a routerLink="/users/detail/{{user.UpdateLastUserID}}"> {{ user.UpdateLastUserID }}</a></span></td></tr>
           <tr><th>Active</th>         <td>{{ user.Active ? "Yes" : "No" }}</td></tr>
           <tr><th>Username</th>       <td>{{ user.Username }}</td></tr>
           <tr><th>Name</th>           <td>{{ user.Firstname}} {{user.Lastname }}</td></tr>
@@ -23,7 +14,6 @@
           <tr><th>IsReviewer?</th>    <td>{{ user.IsReviewer ? "Yes" : "No" }}</td></tr>
           <tr><th>IsAdmin?</th>       <td>{{ user.IsAdmin ? "Yes" : "No" }}</td></tr>
           <tr><th>PW Change Req?</th> <td>{{ user.PasswordNeedsChanged ? "Yes" : "No" }}</td></tr>
-        </tbody>
       </table>
 
       <a routerLink="/users/edit/{{user.Id}}" class="btn btn-warning">Edit</a>

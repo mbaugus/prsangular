@@ -13,13 +13,15 @@ import { User } from '../../../models/user';
 
 export class MenuComponent implements OnInit {
   LoggedIn = false;
+  dropDownClicked = false;
   Name = '';
+  Permission = '';
   menuItems: Menu[] = [
-    new Menu('Requests', '/purchaserequests/list', 'Go to the purchase request list', true),
-    new Menu('Vendors', '/vendors/list', 'Go to Vendors List', true),
-    new Menu('Products', '/products/list', 'Go to Product List', true),
-    new Menu('Users', '/users/list', 'Go to Users List', true),
-    new Menu('About', '/about', 'About this website', true),
+    new Menu('Requests', '/purchaserequests/list', 'Go to the purchase request list', true, ['admin', 'review', 'user']),
+    new Menu('Vendors', '/vendors/list', 'Go to Vendors List', true, ['admin', 'review', 'user']),
+    new Menu('Products', '/products/list', 'Go to Product List', true, ['admin', 'review', 'user']),
+    new Menu('Users', '/users/list', 'Go to Users List', true, ['admin']),
+    new Menu('Review', '/purchaserequests/reviewlist', 'Review purchase requests', true, ['admin', 'review']),
   ];
   constructor(private route: Router,
               private SysSvc: SystemService
@@ -30,24 +32,33 @@ export class MenuComponent implements OnInit {
       this.SysSvc.RemoveUser();
       this.LoggedIn = false;
       this.Name = '';
+      this.Permission = '';
       console.log(resp);
       this.route.navigateByUrl('/login');
     });
   }
+
+  dropdownclick(): void {
+    console.log('Clicked');
+    this.dropDownClicked = !this.dropDownClicked;
+  }
   ngOnInit() {
+    this.setSubscription();
+  }
+
+    setPermissions(): void {
       const user: User = this.SysSvc.GetUser();
       if (user !== null) {
           this.LoggedIn = true;
           this.Name = user.Username;
+          this.Permission = user.GetRole();
+          console.log('Role ', this.Permission);
       }
+    }
 
+    setSubscription() {
     this.SysSvc.LoggedInAs.subscribe(name => {
-      this.Name = name;
-      if ( name === '') {
-        this.LoggedIn = false;
-      } else {
-        this.LoggedIn = true;
-      }
+        this.setPermissions();
     });
   }
 }

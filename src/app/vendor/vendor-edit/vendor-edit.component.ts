@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class VendorEditComponent implements OnInit {
   vendor: Vendor;
+  pagetitle = 'Edit vendor';
   constructor(
     private VendorSvc: VendorService,
     private route: ActivatedRoute,

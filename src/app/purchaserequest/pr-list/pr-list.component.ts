@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PurchaseRequest } from '../../models/purchaserequest';
 import { PrService } from '../../services/pr.service';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-pr-list',
@@ -8,9 +10,11 @@ import { PrService } from '../../services/pr.service';
   styleUrls: ['./pr-list.component.css']
 })
 export class PrListComponent implements OnInit {
-  pagetitle = 'Purchase Request List'
+  pagetitle = 'Purchase Request List';
   prs: PurchaseRequest[] = [];
-  constructor(private PurchaseRequestSvc: PrService) { }
+
+  constructor(private PurchaseRequestSvc: PrService,
+              private UserSvc: UserService) { }
   ngOnInit() {
     this.PurchaseRequestSvc.List().subscribe(purchaserequests => {
       console.log(purchaserequests);

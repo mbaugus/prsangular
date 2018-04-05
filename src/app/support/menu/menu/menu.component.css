@@ -1,25 +1,65 @@
-ul{
+.prsnav{
+    margin-left: 100px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
     list-style: none;
     display: block;
-    background-color:rgb(51, 50, 50)
+    position: relative;
+}
+.logo{
+    position: absolute;
+    top: -10px;
+    left: 0px;
+    padding: 0;
+    margin: 0;
+    width: 100px;
+    height: auto;
 }
 
-li{
-    margin-left: 7px;
-    margin-right: 7px;
-    display: inline-block;
-    list-style-type: none;
-    color: #fff
+.prsnav a {
+    float: left;
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
 
-a{
-    font-size: 2em;
-    margin-right: 10px;
-    color: rgb(0, 255, 0)
+/* Change the color of links on hover */
+.prsnav a:hover {
+    background-color: #ddd;
+    color: black;
 }
 
- .mydropbtn{
-  background: #3498db;
+.prsnav .icon {
+    display: none;
+}
+
+/* Add an active class to highlight the current page */
+.prsnav .activelink{
+    background-color:dodgerblue;
+    font-weight: bold;
+    color: white;
+}
+.prsnav .activelink:hover{
+    background-color:dodgerblue;
+    font-weight: bold;
+    color: white;
+}
+
+
+#dropdown{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    display: block;
+}
+
+ #dropbtn{
+  background: dodgerblue;
   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
   background-image: -moz-linear-gradient(top, #3498db, #2980b9);
   background-image: -ms-linear-gradient(top, #3498db, #2980b9);
@@ -29,34 +69,33 @@ a{
   -moz-border-radius: 8;
   border-radius: 8px;
   color: #ffffff;
-  font-size: 15px;
-  padding: 10px 20px 10px 20px;
+  font-size: 16px;
+  padding: 5px 10px 5px 10px;
   text-decoration: none;
   margin: 0;
   font-family: inherit;
   }
 
   
+  #dropbtn:hover + #dropdowncontent {
+    display: block;
+  }
 
-.mydropdown{
-    margin-right: 10px;
-    margin-top: 2px;
-    float: right;
-    overflow: hidden;
-}
-
-.my-dropdown-content{
+  #dropdowncontent{
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 120px; 
+    min-width: 100px;
     border-radius:8px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
 
+#dropdowncontent:hover{
+    display: block;
+}
+
 .my-dropdown-link {
-    float: none;
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -69,7 +108,3 @@ a{
     cursor: pointer;
     background-color: rgb(238, 239, 241);
 }
-
-.mydropdown:hover .my-dropdown-content {
-    display: block;
-  }

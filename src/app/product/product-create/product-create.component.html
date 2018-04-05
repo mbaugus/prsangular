@@ -1,6 +1,7 @@
-<div id="pagetitle">
-  <h1>{{pagetitle}}</h1>
-</div>
+<p class="lead">{{pagetitle}}</p>
+<app-breadcrumb></app-breadcrumb>
+<hr class="my-2">
+
 
 <div *ngIf="product" id="content">
   <form>
@@ -63,11 +64,10 @@
         <label class="col-form-label col-sm-2" for="uploadPhoto">Upload Photo:</label>
         <input (change)='fileChange($event)' [disabled]='loading' type="file" class="form-control col-sm-6" id="file" accept="image/*" name="file">
         <h3 *ngIf="uploadError.length > 0" class="text-red">{{uploadError}}</h3>
-        <button (click)="uploadimage()" *ngIf="valid" class="col-sm-2">Upload <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
     </div>
 
     <div>
-        <button (click)="create()" class="btn btn-warning">Change</button>
+        <button (click)="create()" class="btn btn-warning">Create</button>
     </div>
     
   </form>

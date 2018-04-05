@@ -1,0 +1,20 @@
+<p class="lead">{{pagetitle}}</p>
+<app-breadcrumb></app-breadcrumb>
+<hr class="my-2">
+
+  <div class="options">
+    <div class="optionsheader">Update account</div>
+      <div class="optionscontent">
+        
+        <button class="btn btn-primary" [disabled]="sendingchange" *ngIf="!changingpw" (click)="changingpw=!changingpw">Change password</button>
+          <div *ngIf="changingpw" class="changepw">
+            <label>Old password</label>
+            <input type="password" id="oldpw" name="oldpw" [disabled]="sendingchange"  [(ngModel)]="oldpw">
+            <label>New password</label>
+            <input type="password" id="newpw" name="newpw" [disabled]="sendingchange"  [(ngModel)]="newpw">
+            <button class="btn btn-primary"  [disabled]="sendingchange" (click)="Submitpw()">Submit</button>
+            <button class="btn btn-warning"  [disabled]="sendingchange" (click)="changingpw=!changingpw">Cancel</button>
+          </div>
+          
+      </div>
+    </div>

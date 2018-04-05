@@ -15,6 +15,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 
 export class ProductEditComponent implements OnInit {
+  pagetitle = 'Edit Product';
   form: FormGroup;
   nfile: any;
   product: Product;
@@ -59,7 +60,7 @@ export class ProductEditComponent implements OnInit {
   }
 
   change(): void {
-    this.ProductSvc.Change(this.product).subscribe(res =>{
+    this.ProductSvc.Change(this.product).subscribe(res => {
       console.log(res);
       this.router.navigateByUrl('/products/list');
     });
@@ -69,19 +70,14 @@ export class ProductEditComponent implements OnInit {
     this.loading = true;
     const input: FormData = new FormData();
     input.append('file', this.nfile.files[0]);
+    input.append('productIDToAttachTo', String(this.product.Id));
 
     this.FileSvc.UploadPicture(input).subscribe(res => {
       this.nfile.value = '';
-
-     // if (res['Status'] === 'Success') {
-      //  this.uploadError = '';
-       // this.product.PhotoPath = res['FileName'];
-      //} else {
-      //  this.uploadError = res['Message']
-      //}
       console.log(res);
       this.loading = false;
       this.valid = false;
+      this.getProductById(this.product.Id);
     });
   }
 

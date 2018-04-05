@@ -12,7 +12,7 @@ import { PurchaseRequestLineItem } from '../../models/purchaserequestlineitem';
   styleUrls: ['./pr-editlines.component.css']
 })
 export class PrEditLinesComponent implements OnInit {
-
+  pagetitle = 'Edit Purchase Request items';
   pr: PurchaseRequest;
   prli: {};
   constructor(
@@ -23,6 +23,7 @@ export class PrEditLinesComponent implements OnInit {
   ) {}
 
   Update(prli: PurchaseRequestLineItem): void {
+    console.log(prli);
     this.PurchaseRequestLineItemSvc.Change(prli).subscribe(resp => {
       this.GetPurchaseRequestById(String(this.pr.Id));
     });

@@ -1,40 +1,31 @@
-<div id="pagetitle">
-  <h1>{{pagetitle}}</h1>
-</div>
-
+<p class="lead">{{pagetitle}}</p>
+<app-breadcrumb></app-breadcrumb>
+<br>
 <div id="content">
   
   <div [hidden]="!product">
     <div *ngIf="product">
+      <div class="table-responsive">
     <table class="table table-sm table-hover">
-      <thead>
-        <tr>
-          <th>
-            <h6>Product Id: {{product.Id}}</h6>
-            <h6>Created: {{product.DateCreated | date:'EEE, MMM d, y, h:mm:ss a' }}</h6>
-              <h6>Updated: {{product.DateUpdated | date:'EEE, MMM d, y, h:mm:ss a'}} <span *ngIf="product.UpdateLastUserID"> by <a routerLink="/users/detail/{{product.UpdateLastUserID}}" routerLinkActive="activelink" >{{ product.UpdateLastUserID }}</a></span></h6>
-          </th>
-          <th></th>
-        </tr>
-        </thead>
-      <tbody>
+
+        <tr><th>Created</th><td>{{product.DateCreated | date:'EEE, MMM d, y, h:mm:ss a' }} <span *ngIf="product.User"> by <a routerLink="/users/detail/{{product.User.Id}}" routerLinkActive="activelink" >{{ product.User.Username }}</a></span></td>
+        <tr><th>Updated</th><td>{{product.DateUpdated | date:'EEE, MMM d, y, h:mm:ss a'}} <span *ngIf="product.UpdateLastUserId"> by <a routerLink="/users/detail/{{product.UpdateLastUserId}}" routerLinkActive="activelink" >{{ product.UpdateLastUserId }}</a></span></td>
         <tr><th>Active</th>         <td>{{ product.Active ? "Active" : "Inactive" }}</td></tr>
         <tr><th>Name</th>           <td>{{ product.Name}}</td></tr>
         <tr><th>Price</th>          <td>{{ product.Price }}</td></tr>
         <tr><th>VendorID / Name</th><td><a routerLink="/vendors/detail/{{product.VendorID}}">{{ product.VendorID }} / {{ product.Vendor.Name }}</a></td></tr>
         <tr><th>PartNumber</th>     <td>{{ product.PartNumber }}</td></tr>
         <tr><th>Unit</th>           <td>{{ product.Unit }}</td></tr>
-
         <tr>
           <th>PhotoPath</th>      
           <td>{{ product.PhotoPath }}
-            <img src={{product.PhotoPath}}>
-          </td>
+              <div style="max-width: 30%">
+              <app-image-product [basePath]="product.PhotoPath" [thumbnail]="false"></app-image-product>
+            </div>
+            </td>
         </tr>
-        
-        <tr><th>Last Updated By</th><td>{{ product.UpdatedLastUserID }}</td></tr>
-      </tbody>
     </table>
+    </div>
     <a routerLink="/products/edit/{{product.Id}}" class="btn btn-warning">Edit</a>
     <button (click)="remove()" class="btn btn-danger">Delete</button>
   </div>

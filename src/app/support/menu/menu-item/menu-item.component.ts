@@ -8,7 +8,7 @@ import { Menu } from '../menu';
 export class MenuItemComponent implements OnInit {
   @Input() menuItem: Menu;
   constructor() { }
-
   ngOnInit() {
   }
+
 }

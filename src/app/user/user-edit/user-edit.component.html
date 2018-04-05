@@ -1,6 +1,7 @@
-<div id="pagetitle">
-    <h1>{{pagetitle}}</h1>
-</div>
+<p class="lead">{{pagetitle}}</p>
+<app-breadcrumb></app-breadcrumb>
+<br>
+<hr class="my-2">
   
   <div id="content">
 
@@ -10,19 +11,19 @@
       <!-- first name -->
       <div class="form-group row">
         <label class="col-form-label col-sm-2" for="userfirstname">First name:</label>
-        <input [(ngModel)]='user.FirstName' name='Firstname' type="text" class="form-control col-sm-6" id="userfirstname" aria-describedby="firstNameHelp" placeholder="First Name">
+        <input [(ngModel)]='user.Firstname' name='Firstname' type="text" class="form-control col-sm-6" id="userfirstname" aria-describedby="firstNameHelp" placeholder="First Name">
         <small id="firstNameHelp" class="form-text text-muted col-sm-2">The first name</small>
       </div>
       <!-- last name -->
       <div class="form-group row">
         <label class="col-form-label col-sm-2" for="userlastname">Last name:</label>
-        <input [(ngModel)]='user.LastName' name='LastName' type="text" class="form-control col-sm-6" id="userlastname" aria-describedby="lasttNameHelp" placeholder="Last Name">
+        <input [(ngModel)]='user.Lastname' name='LastName' type="text" class="form-control col-sm-6" id="userlastname" aria-describedby="lasttNameHelp" placeholder="Last Name">
         <small id="lasttNameHelp" class="form-text text-muted col-sm-2">The last name</small>
       </div>
        <!-- User name -->
        <div class="form-group row">
           <label class="col-form-label col-sm-2" for="userUserName">Username:</label>
-          <input [(ngModel)]='user.UserName' name='UserName' type="text" class="form-control col-sm-6" id="userUserName" aria-describedby="userNameHelp" placeholder="Username">
+          <input [(ngModel)]='user.Username' name='UserName' type="text" class="form-control col-sm-6" id="userUserName" aria-describedby="userNameHelp" placeholder="Username">
           <small id="userNameHelp" class="form-text text-muted col-sm-2">The username</small>
         </div>
        <!-- Phone name -->
@@ -36,7 +37,7 @@
           <label class="col-form-label col-sm-2" for="userEmail">Email:</label>
           <input [(ngModel)]='user.Email' name='Email' type="text" class="form-control col-sm-6" id="userEmail" aria-describedby="emailHelp" placeholder="Email">
           <small id="emailHelp" class="form-text text-muted col-sm-2">The email</small>
-        </div>
+        </div> 
        <!-- IsReviewer -->
        <div class="form-group row">
           <label class="col-form-label col-sm-2" for="userReview">Reviewer:</label>

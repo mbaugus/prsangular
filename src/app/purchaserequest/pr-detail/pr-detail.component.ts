@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms'
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { PurchaseRequest } from '../../models/purchaserequest';
 import { PrService } from '../../services/pr.service';
 import { Router } from '@angular/router';
@@ -9,9 +9,6 @@ import { ProductService } from '../../services/product.service';
 import { PurchaseRequestLineItem } from '../../models/purchaserequestlineitem';
 import { Product } from '../../models/product';
 
-import {Observable} from 'rxjs/Observable';
-import {startWith} from 'rxjs/operators/startWith';
-import {map} from 'rxjs/operators/map';
 
 @Component({
   selector: 'app-pr-detail',
@@ -22,14 +19,12 @@ import {map} from 'rxjs/operators/map';
 export class PrDetailComponent implements OnInit {
   pr: PurchaseRequest;
   NewPurchaseRequest: PurchaseRequestLineItem;
+  NewPurchaseRequestProduct: Product;
   ProductErrorString = '';
   addingLine = false;
-  NewProduct: Product;
+
   Products: Product[];
   prli: {};
-
-   myControl: FormControl = new FormControl();
-   filteredProducts: Observable<Product[]>;
 
   constructor(
     private PurchaseRequestSvc: PrService,
@@ -44,6 +39,13 @@ export class PrDetailComponent implements OnInit {
       this.pr = pr;
       this.prli = pr.PurchaseRequestLineItems; // just by convenience we are assigning it to a local variable for access.
       console.log(pr);
+    });
+  }
+
+  DeletePurchaseRequest(pr: PurchaseRequest): void {
+    this.PurchaseRequestSvc.Remove(pr).subscribe(resp => {
+      console.log(resp);
+      this.router.navigateByUrl('/purchaserequests/list');
     });
   }
 
@@ -67,27 +69,21 @@ export class PrDetailComponent implements OnInit {
     this.GetPurchaseRequestLineItemsByRequestId(String(this.pr.Id));
   }
 
-  filter(val: Product): Product[] {
-    return this.Products.filter(product =>
-      product.Name.toLowerCase().indexOf(val.Name.toLowerCase()) === 0);
+  compareFn(v1: number, v2: number): boolean {
+    return v1 === v2;
   }
 
-
   showAddLine(): void {
-    this.NewPurchaseRequest = new PurchaseRequestLineItem(0, this.pr.Id, 0, 0, true, '', '', 0);
+    this.NewPurchaseRequest = new PurchaseRequestLineItem(0, this.pr.Id, 0, 1, true, '', '', 0);
     console.log('Add line');
     this.addingLine = true;
     this.ProductSvc.List().subscribe(products => {
       this.Products = products;
-      this.filteredProducts = this.myControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(val => this.filter(val))
-      );
     });
   }
   hideLineAdd(): void {
     this.Products = [];
+    this.NewPurchaseRequestProduct = null;
     this.addingLine = false;
   }
 
@@ -95,7 +91,14 @@ export class PrDetailComponent implements OnInit {
     this.hideLineAdd();
   }
    CreateProduct(): void {
-    this.hideLineAdd();
+     this.NewPurchaseRequest.ProductID = this.NewPurchaseRequestProduct.Id;
+     this.NewPurchaseRequest.PurchaseRequestId = this.pr.Id;
+     console.log('prli', this.NewPurchaseRequest);
+     this.PurchaseRequestLineItemSvc.Create(this.NewPurchaseRequest).subscribe(resp => {
+        console.log(resp);
+        this.hideLineAdd();
+        this.GetPurchaseRequestById(String(this.pr.Id));
+    });
    }
 
   ngOnInit() {

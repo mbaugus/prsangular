@@ -10,9 +10,15 @@ import { DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 export class ImageProductComponent implements OnInit {
 
   @Input() thumbnail = false;
+  @Input() basePath: string;
+  imageurl = 'http://localhost:61165/images/';
   notfound = '/assets/images/Photo-Not-Available.png';
   thumbnotfound = '/assets/images/thumb-Photo-Not-Available.png';
-  @Input() path: SafeResourceUrl;
+
+  offserver = false;
+  path: SafeResourceUrl;
+  thumbpath: SafeResourceUrl;
+
   constructor
   (
     private FileSvc: FileService,
@@ -21,21 +27,23 @@ export class ImageProductComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log('Path: ', this.path);
-    if ( this.path === '' || this.path == null) {
-      if (this.thumbnail) {
-        this.path = this.sanitizer.bypassSecurityTrustResourceUrl(this.thumbnotfound);
-      } else {
-        this.path = this.sanitizer.bypassSecurityTrustResourceUrl(this.notfound);
-      }
-      return;
+    if ( this.basePath === '' || this.basePath == null) {
+          this.thumbpath = this.sanitizer.bypassSecurityTrustUrl(this.thumbnotfound);
+          this.path = this.sanitizer.bypassSecurityTrustUrl(this.notfound);
+          this.offserver = false;
+          return;
     }
-      // blank filename means its on our server, append neccesary info.
-      if (this.thumbnail) {
-        this.path = this.sanitizer.bypassSecurityTrustResourceUrl('localhost:61165/Image/' + 'thumb-' + this.path);
-      } else {
-        this.path = this.sanitizer.bypassSecurityTrustResourceUrl('localhost:61165/Image/' + this.path);
-      }
-      console.log('new path: ', this.path);
-  }
+    if ( this.basePath.indexOf('/') !== -1) {
+      // has a slash in it, assume its off server.
+        this.offserver = true;
+        this.path =  this.sanitizer.bypassSecurityTrustUrl(this.basePath);
+        return;
+    }
+
+    // blank filename means its on our server, append neccesary info.
+       this.offserver = false;
+       this.thumbpath = this.sanitizer.bypassSecurityTrustUrl(this.imageurl + 'thumb-' + this.basePath);
+       this.path = this.sanitizer.bypassSecurityTrustUrl(this.imageurl + this.basePath);
+     // console.log('new path: ', this.basePath);
+   }
 }

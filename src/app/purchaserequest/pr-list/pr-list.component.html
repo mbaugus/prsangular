@@ -1,6 +1,6 @@
-<div id="pagetitle">
-  <h1>{{pagetitle}}</h1>
-</div>
+<p class="lead">{{pagetitle}}</p>
+<app-breadcrumb></app-breadcrumb>
+<hr class="my-2">
 
 <a routerLink="/purchaserequests/create" class="btn btn-primary">Create Purchase Request</a>
 
@@ -33,8 +33,8 @@
     <td>{{pr.Active ? "Active" : "Inactive" }}</td>
     
     <td>
-      <a routerLink="/purchaserequests/detail/{{pr.Id}}" class="btn">Detail</a> |
-      <a routerLink="/purchaserequests/edit/{{pr.Id}}" class="btn">Edit</a> 
+      <a routerLink="/purchaserequests/detail/{{pr.Id}}" class="btn"><i class="fa fa-info detail" aria-hidden="true"></i></a> |
+      <a routerLink="/purchaserequests/edit/{{pr.Id}}" class="btn"><i class="fas fa-edit info" aria-hidden="true"></i></a> 
     </td>
   </tr>
 </tbody>

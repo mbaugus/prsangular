@@ -1,0 +1,14 @@
+.options{
+    border: solid 1px rgba(0,0,0,.25);
+    width: 70%;
+    margin: 0 auto;
+}
+.optionsheader{
+    background-color: dodgerblue;
+    color: white;
+    text-align: center;
+}
+.optionscontent{
+    padding: 25px;
+    text-align: left;
+}

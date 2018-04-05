@@ -12,12 +12,32 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user: User = this.SysSvc.GetUser();
-        console.log(user);
-        if ( user && user.SessionId ) {
+        const permission = route.data['permission'];
+
+        console.log(state.url);
+        console.log("Returned from get user", user);
+        if (!permission) { throw  new Error('No permissions seutp on this route'); }
+        if (!permission.only.length) { throw new Error('No rules in permission setup.'); }
+
+        if ( !user || !user.SessionId ) {
+            this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+            return false;
+        }
+        let role = '';
+        if (user.IsAdmin) {
+            role = 'admin';
+        } else if (user.IsReviewer) {
+            role = 'review';
+        } else {
+            role = 'user';
+        }
+        const canActivate = permission.only.includes(role);
+
+        if ( !canActivate ) {
+            this.router.navigate(['/home'], { queryParams: { returnUrl: state.url }});
+            return false;
+        } else {
             return true;
         }
-        // not logged in so redirect to login page with the return url
-        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-        return false;
     }
 }

@@ -2,8 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
 // routing
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './support/authguard';
@@ -48,16 +47,23 @@ import { PrCreateComponent } from './purchaserequest/pr-create/pr-create.compone
 import { PrDetailComponent } from './purchaserequest/pr-detail/pr-detail.component';
 import { PrEditComponent } from './purchaserequest/pr-edit/pr-edit.component';
 import { PrListComponent } from './purchaserequest/pr-list/pr-list.component';
+
 // Purchase Request Line Item component
 import { PrliCreateComponent } from './purchaserequest-lineitem/prli-create/prli-create.component';
 import { PrliDetailComponent } from './purchaserequest-lineitem/prli-detail/prli-detail.component';
 import { PrliEditComponent } from './purchaserequest-lineitem/prli-edit/prli-edit.component';
 import { PrliListComponent } from './purchaserequest-lineitem/prli-list/prli-list.component';
 import { PrEditLinesComponent } from './purchaserequest/pr-editlines/pr-editlines.component';
-import { LoginComponent } from './login/login/login.component';
+
+// Purchase Request Review
+import { PrReviewlistComponent } from './purchaserequest/pr-reviewlist/pr-reviewlist.component';
+import { PrReviewComponent } from './purchaserequest/pr-review/pr-review.component';
 
 // authentication headers on each request
-
+import { LoginComponent } from './login/login/login.component';
+import { FooterComponent } from './support/footer/footer.component';
+import { BreadcrumbComponent } from './support/breadcrumb/breadcrumb.component';
+import { UserAccountComponent } from './user/user-account/user-account.component';
 
 
 @NgModule({
@@ -91,14 +97,18 @@ import { LoginComponent } from './login/login/login.component';
     PrliEditComponent,
     PrliListComponent,
     PrEditLinesComponent,
-    LoginComponent
+    LoginComponent,
+    PrReviewlistComponent,
+    PrReviewComponent,
+    FooterComponent,
+    BreadcrumbComponent,
+    UserAccountComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule
+    HttpClientModule
   ],
   providers: [
     UserService,

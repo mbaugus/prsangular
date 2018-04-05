@@ -1,5 +1,10 @@
+<p class="lead">{{pagetitle}}</p>
+<app-breadcrumb></app-breadcrumb>
+<hr class="my-2">
+
 <div *ngIf="pr">
-  <h6>{{pr.Id}} {{pr.Total}} {{pr.Description}}</h6>
+  <p class="lead"><b>{{pr.Description}}</b></p>
+  <h1>{{pr.Total | currency}}</h1>
 
   <div class="list-group">
 
@@ -8,15 +13,15 @@
       </div>
 
       <div *ngFor="let p of prli" class="list-group-item list-group-item-action ">
-          <div class="d-flex w-100 justify-content-between">
-            <h6 class="mb-1">{{p.Product.Name}}</h6>
-            <h6 class>Total: {{ (p.Quantity * p.Product.Price) | currency }}</h6>
-            <small><button class="btn-danger" (click)="remove(p)">Remove</button></small>
+          <div class="row">
+            <div class="col-sm-2">{{p.Product.Name}}</div>
+            <div class="col-sm-2"><input class="tinyinput" type="number" [(ngModel)]="p.Quantity" min='1' max='999'></div>
+            <div class="col-sm-2">Total: {{ (p.Quantity * p.Product.Price) | currency }}</div>
+            <div class="col-sm-2"><app-image-product [basePath]="p.Product.PhotoPath" [thumbnail]="true"></app-image-product></div>
+            <div class="col-sm-2"><button class="btn-primary" (click)="Update(p)">Update</button></div>
+            <div class="col-sm-2"><div class="trash" (click)="remove(p)"><i class="fas fa-trash" style="color:red"></i></div></div>  
           </div>
-      <input type="number" [(ngModel)]="p.Quantity">
-
-       <!-- x{{p.Quantity}} | {{p.Product.Name}} | {{(p.Quantity * p.Product.Price) | currency}}--> 
-      
+        <br>
       </div>
   <!--
     Id: number;

@@ -1,11 +1,13 @@
-<div id="pagetitle">
-    <h1>{{pagetitle}}</h1>
-  </div>
+<p class="lead">{{pagetitle}}</p>
+<app-breadcrumb></app-breadcrumb>
+<hr class="my-2">
+
   
   <a routerLink="/vendors/create" class="btn btn-primary" routerLinkActive="activelink">Create Vendor</a>
   
   <div *ngIf="vendors.length > 0" id="content">
     <br>
+    <div class="table-responsive">
   <table class="table table-sm text-center table-striped table-hover">
     <thead class="thead-dark">
       <tr>
@@ -28,16 +30,12 @@
       <td>{{vendor.State}}</td>
       <td>{{vendor.Active ? "Yes" : "No" }}</td>
       <td>
-        <a routerLink="/vendors/detail/{{vendor.Id}}" class="btn">Detail</a> |
-        <a routerLink="/vendors/edit/{{vendor.Id}}" class="btn">Edit</a>  
+        <a routerLink="/vendors/detail/{{vendor.Id}}" class="btn"><i class="fa fa-info detail" aria-hidden="true"></i></a> |
+        <a routerLink="/vendors/edit/{{vendor.Id}}" class="btn"><i class="fa fa-edit detail" aria-hidden="true"></i></a>  
       </td>
-  
-      <!--<td>{{user.IsReviewer}}</td>
-      <td>{{user.IsAdmin}}</td>
-      <td>{{user.Active}}</td>-->
     </tr>
   </tbody>
   
   </table>
-  
+  </div>
   </div>

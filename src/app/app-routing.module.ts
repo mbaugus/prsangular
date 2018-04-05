@@ -26,37 +26,84 @@ import { PurchaseRequestLineItem } from './models/purchaserequestlineitem';
 import { PrliEditComponent } from './purchaserequest-lineitem/prli-edit/prli-edit.component';
 import { PrEditLinesComponent} from './purchaserequest/pr-editlines/pr-editlines.component';
 
+import { PrReviewlistComponent } from './purchaserequest/pr-reviewlist/pr-reviewlist.component';
+import { PrReviewComponent } from './purchaserequest/pr-review/pr-review.component';
+
 import { AuthGuard } from './support/authguard';
 import { LoginComponent } from './login/login/login.component';
+import { UserAccountComponent } from './user/user-account/user-account.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard],
+   data: { permission: {only: ['user', 'admin', 'review'] } } },
+
   { path: 'login',  component: LoginComponent },
 
-  { path: 'users/detail/:id', component: UserDetailComponent, canActivate: [AuthGuard] },
-  { path: 'users/edit/:id', component: UserEditComponent, canActivate: [AuthGuard] },
-  { path: 'users/list', component: UserListComponent, canActivate: [AuthGuard] },
-  { path: 'users/create', component: UserCreateComponent, canActivate: [AuthGuard] },
+  { path: 'users/detail/:id', component: UserDetailComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['user', 'admin', 'review'] } } },
 
-  { path: 'vendors/detail/:id', component: VendorDetailComponent, canActivate: [AuthGuard] },
-  { path: 'vendors/edit/:id', component: VendorEditComponent, canActivate: [AuthGuard] },
-  { path: 'vendors/list', component: VendorListComponent, canActivate: [AuthGuard] },
-  { path: 'vendors/create', component: VendorCreateComponent, canActivate: [AuthGuard] },
+  { path: 'users/edit/:id', component: UserEditComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['admin'] } }  },
 
-  { path: 'products/list', component: ProductListComponent, canActivate: [AuthGuard] },
-  { path: 'products/create', component: ProductCreateComponent, canActivate: [AuthGuard] },
-  { path: 'products/edit/:id', component: ProductEditComponent, canActivate: [AuthGuard] },
-  { path: 'products/detail/:id', component: ProductDetailComponent, canActivate: [AuthGuard] },
+  { path: 'users/list', component: UserListComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['user', 'admin', 'review'] } } },
 
-  { path: 'purchaserequests/list', component: PrListComponent, canActivate: [AuthGuard]  },
-  { path: 'purchaserequests/detail/:id', component: PrDetailComponent, canActivate: [AuthGuard] },
-  { path: 'purchaserequests/edit/:id', component: PrEditComponent, canActivate: [AuthGuard] },
-  { path: 'purchaserequests/create', component: PrCreateComponent, canActivate: [AuthGuard]  },
-  { path: 'purchaserequests/editlineitem/:id', component: PrliEditComponent, canActivate: [AuthGuard] },
-  { path: 'purchaserequests/editlines/:id', component: PrEditLinesComponent, canActivate: [AuthGuard] },
+  { path: 'users/create', component: UserCreateComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['admin'] } }},
 
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
+  { path: 'users/account', component: UserAccountComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['user', 'admin', 'review'] } } },
+
+  { path: 'vendors/detail/:id', component: VendorDetailComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['user', 'admin', 'review'] } } },
+
+  { path: 'vendors/edit/:id', component: VendorEditComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['admin']} } },
+
+  { path: 'vendors/list', component: VendorListComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['user', 'admin', 'review'] } } },
+
+  { path: 'vendors/create', component: VendorCreateComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['admin'] } } },
+
+  { path: 'products/list', component: ProductListComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['user', 'admin', 'review'] } } },
+
+  { path: 'products/create', component: ProductCreateComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['admin'] } } },
+
+  { path: 'products/edit/:id', component: ProductEditComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['admin']} } },
+
+  { path: 'products/detail/:id', component: ProductDetailComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['user', 'admin', 'review'] } } },
+
+  { path: 'purchaserequests/list', component: PrListComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['user', 'admin', 'review'] } }  },
+
+  { path: 'purchaserequests/create', component: PrCreateComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['user', 'admin'] } }  },
+
+  { path: 'purchaserequests/reviewlist', component: PrReviewlistComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['admin', 'review'] } } },
+
+  { path: 'purchaserequests/detail/:id', component: PrDetailComponent, canActivate: [AuthGuard], 
+  data: { permission: {only: ['user', 'admin', 'review'] } }},
+
+  { path: 'purchaserequests/edit/:id', component: PrEditComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['user', 'admin', 'review'] } } },
+
+  { path: 'purchaserequests/editlineitem/:id', component: PrliEditComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['user', 'admin', 'review'] } } },
+
+  { path: 'purchaserequests/editlines/:id', component: PrEditLinesComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['user', 'admin', 'review'] } } },
+
+  { path: 'purchaserequests/review/:id', component: PrReviewComponent, canActivate: [AuthGuard],
+  data: { permission: {only: ['user', 'admin', 'review'] } } },
+
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: { permission: {only: ['user', 'admin', 'review'] } } },
+  { path: 'about', component: AboutComponent, canActivate: [AuthGuard], data: { permission: {only: ['user', 'admin', 'review'] } } },
   { path: '**', redirectTo: '' }
 ];
 

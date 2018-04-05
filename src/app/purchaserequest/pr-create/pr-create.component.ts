@@ -12,7 +12,7 @@ import { PurchaseRequest } from '../../models/purchaserequest';
   styleUrls: ['./pr-create.component.css']
 })
 export class PrCreateComponent implements OnInit {
-  pagetitle = 'Create a purchase reques';
+  pagetitle = 'New purchase request';
   pr: PurchaseRequest = new PurchaseRequest(
     0, 0, '' , '', '', '', '', 0, true, '', '', '' , 0, null, null);
   constructor(
@@ -25,7 +25,7 @@ export class PrCreateComponent implements OnInit {
         if (resp['Status'] === 'Success') {
           // take to the edit screen
           if (resp['Id'] != null) {
-            this.router.navigateByUrl('/purchaserequests/edit/' + resp['Id'] );
+            this.router.navigateByUrl('/purchaserequests/detail/' + resp['Id'] );
           } else {
             this.router.navigateByUrl('/purchaserequests/list/');
           }

@@ -1,100 +1,123 @@
-<div id="pagetitle">
-  <h1>{{pagetitle}}</h1>
-</div>
+<div class="page-header">
+    <app-breadcrumb></app-breadcrumb>
+    <br>
 
-<div *ngIf="pr" [hidden]="!addingLine">
-        <!-- Product -->
-        <h1>Add an item to your request.</h1>
-      <form *ngIf="NewPurchaseRequest">
+  <div *ngIf="pr" [hidden]="!addingLine" class="addLineContainer">
+  <div class="addLineHeader">
+    <h1><i class="fas fa-shopping-cart" style="font-size:48px;color:white;"></i>Add an item.</h1>
+  </div>  
+  <div class="containerBox">
+    <form *ngIf="NewPurchaseRequest">
+
+
+        <!-- <input list="browsers" name="browser"> 
+        <datalist id="browsers">-->
+
+  <!-- product list inside form -->
+  <div *ngIf="Products">
         <div class="form-group row">
-          <label class="col-form-label col-sm-2" for="ProductID">Product:</label>
-          <input [(ngModel)]='NewPurchaseRequest.ProductID' name='ProductID' type="text"  class="form-control col-sm-6" id="ProductName" aria-describedby="ProductNameHelp">
-          <small id="ProductNameHelp" class="form-text text-muted col-sm-2">The product you wish to add.</small>
-        </div>
+            <label class="col-form-label col-sm-2" for="vendorList">Products:</label>
+            <div class="col-sm-6 select-list">
+              <select [(ngModel)]='NewPurchaseRequestProduct' [compareWith]='compareFn' class='form-control' name='Product' id='product-PRLI'>
+                  <option value="" disabled>Choose a product</option>
+                <option *ngFor="let product of Products" [ngValue]="product">{{product.Name}}</option>
+              </select>
+            </div>
+            <div *ngIf="NewPurchaseRequestProduct" class="col-sm-2">
+                <label class="col-form-label col-sm-2">{{NewPurchaseRequestProduct.Price | currency}}</label>
+            </div>
+        </div> 
+  </div>
 
-        <div *ngIf="Products.length > 0">
-        <mat-form-field>
-            <input type="text" placeholder="Choose a Product" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let product of filteredProducts | async" [value]="product.Name">
-                {{ product.Name }}
-              </mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-        </div>
-
-        <div *ngIf="!Products || Products.length == 0">
-            <i class="fa fa-circle-o-notch fa-spin" style="font-size:36px"></i>
-        </div>
+  <!-- spinner if products list hasnt load yet -->
+  <div *ngIf="!Products || Products.length == 0">
+        <i class="fa fa-circle-o-notch fa-spin" style="font-size:36px"></i>
+  </div>
 
         <!-- Quantity -->
         <div class="form-group row">
           <label class="col-form-label col-sm-2" for="Quantity">Quantity:</label>
-          <input [(ngModel)]='NewPurchaseRequest.Quantity' name='Quantity' type="number" min='0' max='999' required class="form-control col-sm-6" id="Quantity" aria-describedby="QuantityHelp" placeholder="Quantity">
+          <input [(ngModel)]='NewPurchaseRequest.Quantity' name='Quantity' type="number" min='1' max='999' value='1' required class="form-control col-sm-6" id="Quantity" aria-describedby="QuantityHelp" placeholder="Quantity">
           <small id="QuantityHelp" class="form-text text-muted col-sm-2">The amount of these you will need.</small>
         </div>
 
-        <div>
-            <button (click)="CreateProduct()" class="btn btn-primary">Add</button>
-            <button (click)="CancelCreateProduct()" class="btn btn-danger">Cancel Add</button>
+
+        <div *ngIf="NewPurchaseRequestProduct" class="form-group row">
+          <label class="col-form-label col-sm-2">Total:</label>
+          <input class="form-control col-sm-6" disabled value="{{ (NewPurchaseRequest.Quantity * NewPurchaseRequestProduct.Price) | currency}}" type="text">
         </div>
+        <!-- Form buttons -->
+        <div>
+            <button (click)="CreateProduct()" [disabled]="!NewPurchaseRequestProduct" class="btn btn-primary">Add</button>
+            <button (click)="CancelCreateProduct()" class="btn btn-danger">Cancel</button>
+        </div>
+        <!-- Form Error -->
+
         <div *ngIf="ProductErrorString.length > 0" class="">{{ProductError}}</div>
-      </form>
-</div>
+    </form> <!-- end new purchase request line item form -->
+    </div>  <!-- end the container box class -->
+</div>  <!-- end adding line -->
+
 <div *ngIf="pr"  class="prdetail">
+
   <div [hidden]="addingLine">
-      <h1>Purchase Request detail</h1>
-  <table class="table table-sm table-hover">
-
-    <thead>
-      <tr>
-        <th>
-
-          <p class="lead">Purchase Request Id: {{pr.Id}}</p>
-          <h6>Created: {{pr.DateCreated | date:'EEE, MMM d, y, h:mm:ss a' }}</h6>
-          <h6>Updated: {{pr.DateUpdated | date:'EEE, MMM d, y, h:mm:ss a'}} <span *ngIf="pr.UpdateLastUserID"> by <a routerLink="/users/detail/{{pr.UpdateLastUserID}}" routerLinkActive="activelink" >{{ pr.UpdateLastUserID }}</a></span></h6>
-          <div *ngIf="pr.ReasonForRejection === ''" class="alert alert-danger" role="alert">{{pr.ReasonForRejection}}</div>
-        
-        </th>
-        <th></th>
-      </tr>
-      </thead>
-
-      <tbody>
+      <p class="lead">Purchase Request detail <button (click)="showAddLine()" class="btn btn-primary">Add Item</button></p>
+        <table class="table table-sm table-hover">
+        <tr><th>Created</th><td>{{pr.DateCreated | date:'EEE, MMM d, y, h:mm:ss a' }}<span *ngIf="pr.User"> by <a routerLink="/users/detail/{{pr.User.Id}}" routerLinkActive="activelink" >{{ pr.User.Username }}</a></span></td></tr>
+        <tr><th>Updated</th><td>{{pr.DateUpdated | date:'EEE, MMM d, y, h:mm:ss a'}} <span *ngIf="pr.UpdateLastUserId"> by <a routerLink="/users/detail/{{pr.UpdateLastUserId}}" routerLinkActive="activelink" >{{ pr.UpdateLastUserId }}</a></span></td></tr>
         <tr><th>Active</th>              <td>{{ pr.Active ? "Active" : "Inactive" }}</td></tr>
-        <tr><th>Created By</th>          <td>{{ pr.UserId}}</td></tr>
-        <tr><th>Description</th>         <td>{{ pr.Description }}</td></tr>
-        <tr><th>Needed by</th>           <td>{{ pr.DateNeeded }}</td></tr>
-        <tr><th>Justification</th>       <td>{{ pr.PartNumber }}</td></tr>
-        <tr><th>DevliveryMode</th>       <td>{{ pr.DevliveryMode }}</td></tr>
         <tr><th>Status</th>              <td>{{ pr.Status }}</td></tr>
+        <tr *ngIf="pr.ReasonForRejection"><th>Reason For Rejection</th><td>{{ pr.ReasonForRejection }}</td></tr>
+        <tr><th>Description</th>         <td>{{ pr.Description }}</td></tr>
+        <tr><th>Time needed</th>           <td>{{ pr.DateNeeded | date:'shortDate'}}</td></tr>
+        <tr><th>Justification</th>       <td>{{ pr.Justification }}</td></tr>
+        <tr><th>DeliveryMode</th>       <td>{{ pr.DeliveryMode }}</td></tr>
         <tr><th>Total</th>               <td>{{ pr.Total | currency}}</td></tr>
-        <tr><th>DevliveryMode</th>       <td>{{ pr.DevliveryMode }}</td></tr>
-        <tr><th>ReasonForRejection</th>  <td>{{ pr.ReasonForRejection }}</td></tr>
      </tbody>
     </table>
 
+    <a routerLink="/purchaserequests/edit/{{pr.Id}}" class="btn btn-warning">Edit </a>
+    <button (click)="DeletePurchaseRequest(pr)" class="btn btn-danger">Delete</button>
+    <a routerLink="/purchaserequests/editlines/{{pr.Id}}" class="btn btn-info">Edit Items</a>
+    <button (click)="showAddLine()" class="btn btn-primary">Add Item</button> 
+</div>
    <!-- *ngFor="let pr of prs" -->
 
-   <a routerLink="/purchaserequests/edit/{{pr.Id}}" class="btn btn-warning">Edit </a>
-   <button (click)="remove()" class="btn btn-danger">Delete</button>
-   <a routerLink="/purchaserequests/editlines/{{pr.Id}}" class="btn btn-info">Edit Items</a>
-   <button (click)="showAddLine()" class="btn btn-primary">Add Item</button> 
+
   </div>
    <br><br>
 
-   
-
+  
    <div *ngIf="prli" class="list-group" >
-     
       <div class="list-group-item list-group-item-action active"><p class="text-center"></p>Requested items to be purchased.</div>
       <div *ngFor="let p of prli" class="list-group-item list-group-item-action">
-        x{{p.Quantity}} | {{p.Product.Name}} | {{(p.Quantity * p.Product.Price) | currency}} 
-        <a routerLink="/purchaserequests/editlineitem/{{p.Id}}"><button class="btn-warning">Edit</button></a>
-        <button class="btn-danger" (click)="remove(p)">Remove</button>
-      </div>
+        
+        <div class="row">
 
-  </div> <!-- end hidden div for meat -->
+          <div class="col-sm-2">
+            {{p.Quantity}} <i class="fas fa-times"></i> 
+          </div>
+
+          <div class="col-sm-2">
+              {{p.Product.Name}}
+          </div>
+
+          <div class="col-sm-2">
+              {{(p.Quantity * p.Product.Price) | currency}}
+          </div>
+
+          <div class="col-sm-4">
+            <app-image-product [basePath]="p.Product.PhotoPath" [thumbnail]="true"></app-image-product>
+        </div>
+
+          <div class="col-sm-2">
+              <div class="trash" (click)="remove(p)"><i class="fas fa-trash" style="color:red"></i></div>
+              <!--<button class="btn-danger" (click)="remove(p)">Remove</button>-->
+          </div>
+
+      </div>
+    </div> <!-- end hidden div for meat -->
+  </div>
 
   <div [hidden]="pr">
     <h1>This is hidden until loaded</h1>

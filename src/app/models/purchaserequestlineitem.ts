@@ -1,6 +1,6 @@
 export class PurchaseRequestLineItem {
     Id: number;
-    PurchaseRequestID: number;
+    PurchaseRequestId: number;
     ProductID: number;
     Quantity: number;
     Active: boolean;
@@ -9,7 +9,7 @@ export class PurchaseRequestLineItem {
     UpdateLastUserId: number;
     constructor(
         Id: number,
-        PurchaseRequestID: number,
+        PurchaseRequestId: number,
         ProductID: number,
         Quantity: number,
         Active: boolean,
@@ -18,7 +18,7 @@ export class PurchaseRequestLineItem {
         UpdateLastUserId: number
     ) {
         this.Id = Id;
-        this.PurchaseRequestID = PurchaseRequestID;
+        this.PurchaseRequestId = PurchaseRequestId;
         this.ProductID = ProductID;
         this.Quantity = Quantity;
         this.Active = Active;

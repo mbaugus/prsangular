@@ -1,21 +1,38 @@
 <div id="menu">
 
 <nav>
+
+  <!--
     <ul *ngIf='LoggedIn'>
-      <li><a routerLink="/home" routerLinkActive="activelink" >PRS</a></li>
+      <li><a routerLink="/home" routerLinkActive="activelink" ><img src="/assets/images/prslogo.png" class="logo"></a></li>
       <li *ngFor="let menu of menuItems">
         <app-menu-item [menuItem]="menu"></app-menu-item>
       </li>
-    
-      <div *ngIf='LoggedIn' class="mydropdown">
-          <div class="mydropbtn">{{Name}} 
-            <i class="fa fa-caret-down"></i>
-          </div>
-          <div class="my-dropdown-content">
-            <div class="my-dropdown-link" (click)="logout()">Logout</div>
-          </div>
-      </div>
+
     </ul>
+  -->
+  <a routerLink="/home"><img src="/assets/images/prslogo.png" class="logo"></a>
+
+  <div *ngIf='LoggedIn' class="prsnav">
+  
+      <a *ngFor="let menu of menuItems"
+        routerLink="{{menu.link}}" routerLinkActive="activelink" data-toggle="tooltip" 
+        data-placement="top" title="{{ menu.tooltip }}">
+        <ng-container *ngIf="menu.permission.includes(Permission)">
+          {{menu.display}}
+        </ng-container>
+      </a>
+  </div>
+
+  <div *ngIf='LoggedIn' id="dropdown" class="mydropdown">
+      <div class="mydropbtn" id="dropbtn">{{Name}} <i class="fa fa-caret-down"></i></div>
+      <div class="my-dropdown-content" id="dropdowncontent">
+        <div class="my-dropdown-link"><a routerLink="/users/account">Account</a></div>
+        <div class="my-dropdown-link" (click)="logout()">Logout</div>
+      </div>
+  </div>
+
 </nav>
 
 </div> <!-- end menu div -->
+<br>

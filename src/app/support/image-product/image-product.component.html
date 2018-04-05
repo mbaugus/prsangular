@@ -1,1 +1,4 @@
-<a [href]='path' target="_blank"><img [src]='path'></a>
+<a *ngIf="offserver && thumbnail" [href]='path' target="_blank"><img [src]='path' width="50px" height="50px" class="imageprod"></a>
+<a *ngIf="offserver && !thumbnail" [href]='path' target="_blank"><img [src]='path' class="imageprod"></a>
+<a *ngIf="!offserver && thumbnail" [href]='path' target="_blank"><img [src]='thumbpath' class="imageprod"></a>
+<a *ngIf="!offserver && !thumbnail" [href]='path' target="_blank"><img [src]='path' class="imageprod"></a>

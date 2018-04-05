@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 })
 export class VendorDetailComponent implements OnInit {
   vendor: Vendor;
+  pagetitle = 'Vendor detail';
   constructor(
     private route: ActivatedRoute,
     private router: Router,

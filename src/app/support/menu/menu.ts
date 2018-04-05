@@ -3,10 +3,18 @@ export class Menu {
     link: string;
     tooltip: string;
     visible: boolean;
-    constructor(display: string, link: string, tooltip: string, visible = true){
+    permission = [];
+
+    constructor(
+        display: string,
+        link: string,
+        tooltip: string,
+        visible: boolean,
+        permission: string[]) {
         this.display = display;
         this.link = link;
         this.tooltip = tooltip;
         this.visible = visible;
+        this.permission = permission;
     }
 }
