@@ -2,7 +2,7 @@
 <app-breadcrumb></app-breadcrumb>
 <hr class="my-2">
 
-<a routerLink="/users/create" class="btn btn-primary">Create User</a>
+<app-specialbtn  [url]='' [info]="{ permission: ['admin'], type: 'bootstrap', url: '/users/create', display: 'Create User' }"></app-specialbtn>
 
 <div *ngIf="users.length > 0" id="content">
   <br>

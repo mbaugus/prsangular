@@ -9,28 +9,37 @@ const url = 'http://localhost:61165/Login';
 export class SystemService {
 
   @Output() LoggedInAs: EventEmitter<any> = new EventEmitter();
+  User: User = null;
+  constructor(private http: HttpClient) {
+      this.RemoveUser();
+    }
 
-  constructor(private http: HttpClient) { }
   SetLoggedIn(user: User) {
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    this.LoggedInAs.emit(user.Username);
+    this.User = user;
+    this.LoggedInAs.emit(user);
+  }
+  GetUserRole() {
+    if (this.User) {
+      if (this.User.IsAdmin) {
+        return 'admin';
+      } else if (this.User.IsReviewer) {
+        return 'reviewer';
+      } else {
+        return 'user';
+      }
+    }
+    return '';
   }
   LogOut() {
+    this.User = null;
     return this.http.get(url + '/Logout') as Observable<any>;
   }
   RemoveUser(): void {
-    localStorage.removeItem('currentUser');
-    this.LoggedInAs.emit('');
+    this.User = null;
+    this.LoggedInAs.emit(null);
   }
   GetUser(): User {
-     const user: User = JSON.parse(localStorage.getItem('currentUser'));
-     if (!user || !user.Active) {
-       return null;
-     }
-     let realUser: User = new User();
-     realUser.Copy(user);
-     console.log("Real user", realUser);
-     return realUser;
+    return this.User;
   }
   AttemptLogin(username: string, password: string) {
     return this.http.post(url , { user: username, pw: password }) as Observable<any>;

@@ -14,7 +14,6 @@
   <a routerLink="/home"><img src="/assets/images/prslogo.png" class="logo"></a>
 
   <div *ngIf='LoggedIn' class="prsnav">
-  
       <a *ngFor="let menu of menuItems"
         routerLink="{{menu.link}}" routerLinkActive="activelink" data-toggle="tooltip" 
         data-placement="top" title="{{ menu.tooltip }}">

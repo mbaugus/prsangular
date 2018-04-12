@@ -26,7 +26,6 @@ export class MenuComponent implements OnInit {
   constructor(private route: Router,
               private SysSvc: SystemService
             ) { }
-
   logout(): void {
     this.SysSvc.LogOut().subscribe(resp => {
       this.SysSvc.RemoveUser();
@@ -51,13 +50,12 @@ export class MenuComponent implements OnInit {
       if (user !== null) {
           this.LoggedIn = true;
           this.Name = user.Username;
-          this.Permission = user.GetRole();
-          console.log('Role ', this.Permission);
+          this.Permission = this.SysSvc.GetUserRole();
       }
     }
 
     setSubscription() {
-    this.SysSvc.LoggedInAs.subscribe(name => {
+    this.SysSvc.LoggedInAs.subscribe(user => {
         this.setPermissions();
     });
   }

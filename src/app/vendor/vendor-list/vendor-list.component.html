@@ -2,9 +2,8 @@
 <app-breadcrumb></app-breadcrumb>
 <hr class="my-2">
 
-  
-  <a routerLink="/vendors/create" class="btn btn-primary" routerLinkActive="activelink">Create Vendor</a>
-  
+<app-specialbtn  [url]='' [info]="{ permission: ['admin'], type: 'bootstrap', url: '/vendors/create', display: 'Create Vendor' }"></app-specialbtn>
+ 
   <div *ngIf="vendors.length > 0" id="content">
     <br>
     <div class="table-responsive">
@@ -30,9 +29,9 @@
       <td>{{vendor.State}}</td>
       <td>{{vendor.Active ? "Yes" : "No" }}</td>
       <td>
-        <a routerLink="/vendors/detail/{{vendor.Id}}" class="btn"><i class="fa fa-info detail" aria-hidden="true"></i></a> |
-        <a routerLink="/vendors/edit/{{vendor.Id}}" class="btn"><i class="fa fa-edit detail" aria-hidden="true"></i></a>  
-      </td>
+          <app-specialbtn [url]="'/vendors/detail/' + vendor.Id" [info]="{ permission: ['admin'], type: 'detail', url: '', display: '' }"></app-specialbtn>
+          <app-specialbtn [url]="'/vendors/edit/' + vendor.Id"   [info]="{ permission: ['admin'], type: 'edit',  url: '', display: '' }"></app-specialbtn>
+      </td> 
     </tr>
   </tbody>
   

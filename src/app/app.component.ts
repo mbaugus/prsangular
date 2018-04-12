@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'app';
   loggedIn = true;
@@ -14,12 +15,6 @@ export class AppComponent {
               private router: Router) {}
 
   ngOnInit() {
-    this.SysSvc.CheckIfSessionValid().subscribe(resp => {
-      if ( resp['Status'] === 'Failure') {
-        this.SysSvc.LogOut();
-        this.router.navigateByUrl('/logout');
-      }
-      console.log(resp);
-    });
+    this.SysSvc.LogOut();
   }
 }

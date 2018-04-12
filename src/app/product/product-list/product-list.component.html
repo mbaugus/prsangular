@@ -2,8 +2,7 @@
 <app-breadcrumb></app-breadcrumb>
 <hr class="my-2">
 
-  
-  <a routerLink="/products/create" class="btn btn-primary">Create Product</a>
+<app-specialbtn [info]="{ permission: ['admin'], type: 'bootstrap', display: 'Create Product', url: '/products/create' }" ></app-specialbtn>
 
   <div *ngIf="products.length > 0" id="content">
     <br>
@@ -31,13 +30,9 @@
       <td>{{product.Active ? "Active" : "Inactive" }}</td>
       <td><app-image-product [basePath]="product.PhotoPath" [thumbnail]="true"></app-image-product></td>
       <td>
-        <a routerLink="/products/detail/{{product.Id}}" class="btn"><i class="fa fa-info detail" aria-hidden="true"></i></a> |
-        <a routerLink="/products/edit/{{product.Id}}" class="btn"><i class="fas fa-edit info" aria-hidden="true"></i></a>  
+        <app-specialbtn [url]="'/products/detail/' + product.Id" [info]="{ permission: ['admin'], type: 'detail', display: '',  url: '/products/detail/product.Id' }"></app-specialbtn>
+        <app-specialbtn [url]="'/products/edit/' + product.Id"   [info]="{ permission: ['admin'], type: 'edit',   display: '',  url: '/products/edit/product.Id' }"></app-specialbtn>
       </td>
-      
-      <!--<td>{{user.IsReviewer}}</td>
-      <td>{{user.IsAdmin}}</td>
-      <td>{{user.Active}}</td>-->
     </tr>
   </tbody>
   

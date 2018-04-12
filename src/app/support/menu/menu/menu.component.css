@@ -76,6 +76,10 @@
   font-family: inherit;
   }
 
+  #dropbtn:hover{
+      cursor:pointer;
+  }
+
   
   #dropbtn:hover + #dropdowncontent {
     display: block;
@@ -93,6 +97,7 @@
 
 #dropdowncontent:hover{
     display: block;
+    cursor: pointer;
 }
 
 .my-dropdown-link {

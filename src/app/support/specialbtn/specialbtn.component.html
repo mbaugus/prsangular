@@ -1,0 +1,17 @@
+<ng-container *ngIf="info.permission.includes(role)">
+ 
+  <div>
+  <a *ngIf="info.type=='bootstrap'" class="createbutton" routerLink="{{info.url}}">
+    {{info.display}}
+  </a>
+</div>
+
+<span *ngIf="info.type=='detail'">
+    <a routerLink="{{info.url}}" class="btn"><i class="fa fa-info" aria-hidden="true"></i></a>
+</span>
+
+<span *ngIf="info.type=='edit'">
+    <a routerLink="{{info.url}}" class="btn"><i class="fas fa-edit" aria-hidden="true"></i></a>
+</span>
+
+</ng-container>

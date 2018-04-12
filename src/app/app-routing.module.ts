@@ -87,7 +87,7 @@ const routes: Routes = [
   { path: 'purchaserequests/reviewlist', component: PrReviewlistComponent, canActivate: [AuthGuard],
   data: { permission: {only: ['admin', 'review'] } } },
 
-  { path: 'purchaserequests/detail/:id', component: PrDetailComponent, canActivate: [AuthGuard], 
+  { path: 'purchaserequests/detail/:id', component: PrDetailComponent, canActivate: [AuthGuard],
   data: { permission: {only: ['user', 'admin', 'review'] } }},
 
   { path: 'purchaserequests/edit/:id', component: PrEditComponent, canActivate: [AuthGuard],
@@ -106,7 +106,6 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard], data: { permission: {only: ['user', 'admin', 'review'] } } },
   { path: '**', redirectTo: '' }
 ];
-
 
 
 @NgModule({

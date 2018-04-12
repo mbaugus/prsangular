@@ -7,7 +7,8 @@ import { PrliService } from '../../services/prli.service';
 import { ProductService } from '../../services/product.service';
 import { PurchaseRequestLineItem } from '../../models/purchaserequestlineitem';
 import { Product } from '../../models/product';
-//import { Form } from '@angular/common';
+
+
 @Component({
   selector: 'app-pr-edit',
   templateUrl: './pr-edit.component.html',
@@ -18,7 +19,7 @@ export class PrEditComponent implements OnInit {
   pagetitle = 'Edit Purchase Request';
   pr: PurchaseRequest;
   newdate: string;
-  myform: FormData;
+
   constructor(
     private PurchaseRequestSvc: PrService,
     private route: ActivatedRoute,
@@ -50,7 +51,6 @@ export class PrEditComponent implements OnInit {
   }
 
   check(): void {
-    this.form.Validate();
   }
 
 }

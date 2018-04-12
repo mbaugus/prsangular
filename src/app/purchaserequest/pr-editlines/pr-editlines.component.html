@@ -19,7 +19,7 @@
             <div class="col-sm-2">Total: {{ (p.Quantity * p.Product.Price) | currency }}</div>
             <div class="col-sm-2"><app-image-product [basePath]="p.Product.PhotoPath" [thumbnail]="true"></app-image-product></div>
             <div class="col-sm-2"><button class="btn-primary" (click)="Update(p)">Update</button></div>
-            <div class="col-sm-2"><div class="trash" (click)="remove(p)"><i class="fas fa-trash" style="color:red"></i></div></div>  
+            <div class="col-sm-2"><div class="trash" (click)="Remove(p)"><i class="fas fa-trash" style="color:red"></i></div></div>  
           </div>
         <br>
       </div>

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
 import { ImageProductComponent} from '../../support/image-product/image-product.component';
+import { SpecialbtnComponent } from '../../support/specialbtn/specialbtn.component';
 
 @Component({
   selector: 'app-product-list',

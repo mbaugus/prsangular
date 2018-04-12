@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VendorService } from '../../services/vendor.service';
 import { Vendor } from '../../models/vendor';
+import { SpecialbtnComponent } from '../../support/specialbtn/specialbtn.component';
 
 @Component({
   selector: 'app-vendor-list',

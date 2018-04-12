@@ -35,12 +35,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    /*
     const user: User = this.SysSvc.GetUser();
-    if ( user !== null || user.SessionId !== '') {
+    console.log("Login init", user);
+    if ( user !== null && user.SessionId !== '') {
+      console.log("navigate to home.");
       this.router.navigateByUrl('/home');
     }
-    */
   }
-
 }

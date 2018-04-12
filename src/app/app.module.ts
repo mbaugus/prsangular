@@ -64,6 +64,7 @@ import { LoginComponent } from './login/login/login.component';
 import { FooterComponent } from './support/footer/footer.component';
 import { BreadcrumbComponent } from './support/breadcrumb/breadcrumb.component';
 import { UserAccountComponent } from './user/user-account/user-account.component';
+import { SpecialbtnComponent } from './support/specialbtn/specialbtn.component';
 
 
 @NgModule({
@@ -102,7 +103,8 @@ import { UserAccountComponent } from './user/user-account/user-account.component
     PrReviewComponent,
     FooterComponent,
     BreadcrumbComponent,
-    UserAccountComponent
+    UserAccountComponent,
+    SpecialbtnComponent
   ],
   imports: [
     BrowserModule,
